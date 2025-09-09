@@ -119,6 +119,50 @@
     }
     /* generic safe default */
 img, svg, video { max-width: 100%; height: auto; display: block; }
+/* --- Mobile layout fixes --- */
+@media (max-width: 720px) {
+  /* 1) Stack to single column */
+  .grid {
+    display: block;              /* or: grid-template-columns: 1fr; */
+  }
+
+  /* 2) Make left nav a top tab bar instead of a tall sidebar */
+  .left {
+    position: static !important; /* kill sticky on phones */
+    top: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-bottom: 12px;         /* space below the tab bar */
+    border-radius: 0;            /* optional: make it feel like a top bar */
+    border-left: 0; border-right: 0;
+  }
+  .tabs[role="tablist"] {
+    display: flex;
+    flex-direction: row;         /* horizontal tabs */
+    gap: 8px;
+    overflow-x: auto;            /* allow sideways scroll if needed */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding: 8px 6px;
+  }
+  .tab {
+    flex: 0 0 auto;              /* pill-sized buttons that scroll horizontally */
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+
+  /* 3) Let the main panel size naturally; avoid inner scrolling traps */
+  .panel {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;  /* page scrolls, not the panel */
+  }
+
+  /* If any ancestors force a scroll context, neutralize them on mobile */
+  .wrap, .hero, .grid, .panel, body, html {
+    overscroll-behavior: auto;
+  }
+}
   </style>
 </head>
 <body>
