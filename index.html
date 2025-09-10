@@ -5,164 +5,171 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Subhashis Banerjee</title>
   <meta name="description" content="Subhashis Banerjee — Professor, Department of Computer Science." />
-<style>
-  /* ========= Design tokens ========= */
-  :root{
-    --brand:#a21b2f;        /* crimson accent (Ashoka-inspired) */
-    --brand-2:#1a2b49;      /* slate-blue headings */
-    --ink:#1b2230;          /* body text */
-    --muted:#5b6473;        /* secondary text */
-    --bg:#f6f7fb;           /* page background */
-    --card:#ffffff;         /* surfaces */
-    --hair:#e7e9f2;         /* borders */
-    --ring:rgba(162,27,47,.25);
-    --shadow:0 8px 24px rgba(10,22,50,.06);
-    --radius:16px;
-  }
-
-  /* ========= Base ========= */
-  *{ box-sizing:border-box }
-  html, body{ height:auto; min-height:100% }
-  body{
-    margin:0;
-    color:var(--ink);
-    background:var(--bg);
-    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
-  a{ color:var(--brand-2); text-decoration:none }
-  a:hover{ outline:3px solid var(--ring); outline-offset:2px; border-radius:8px }
-  img, svg, video{ max-width:100%; height:auto; display:block } /* responsive media */
-
-  .container{ max-width:1100px; margin:0 auto; padding:20px }
-
-  /* ========= Masthead / Breadcrumbs (optional) ========= */
-  .masthead{ background:linear-gradient(180deg,#fdfdff,#f6f7fb); border-bottom:1px solid var(--hair) }
-  .sitebar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0 }
-  .brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px; color:var(--brand-2) }
-  .brand-dot{ width:28px; height:28px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #d24559, var(--brand)); border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.08) }
-  .nav a{ padding:8px 10px; border-radius:10px }
-  .breadcrumb{ font-size:14px; color:var(--muted); padding:6px 0 18px }
-  .breadcrumb a{ color:var(--muted) }
-  .breadcrumb .sep{ margin:0 8px; color:#a0a6b2 }
-
-  /* ========= Header block (name + role) ========= */
-  .hero{
-    background:var(--card);
-    border:1px solid var(--hair);
-    border-radius:var(--radius);
-    padding:22px;
-    box-shadow:var(--shadow);
-  }
-  .title{ margin:0 0 6px; font-size:32px; line-height:1.25; color:var(--brand-2) }
-  .roles{ margin:0; color:var(--muted) }
-  .pill-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
-  .pill{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#f4f6ff; border:1px solid #e1e6ff; color:#303a8b; font-size:13px }
-
-  /* ========= Layout grid ========= */
-  .grid{
-    display:grid;
-    grid-template-columns:300px 1fr;  /* sidebar + main */
-    gap:24px;
-    margin-top:24px;
-  }
-
-  /* ========= Left column (tabs / sidebar) ========= */
-  .left{
-    position:sticky;         /* sticky only on larger screens */
-    top:18px;
-    align-self:start;
-    background:var(--card);
-    border:1px solid var(--hair);
-    border-radius:var(--radius);
-    padding:14px;
-    box-shadow:var(--shadow);
-  }
-  .tabs[role="tablist"]{ display:flex; flex-direction:column; gap:8px; margin:6px 0 }
-  .tab{
-    display:flex; align-items:center; gap:10px; width:100%;
-    border:1px solid var(--hair); background:#fff; color:var(--brand-2);
-    padding:10px 12px; border-radius:12px; font-weight:600; cursor:pointer;
-  }
-  .tab[aria-selected="true"]{ background:#fff; border-color:#d9dff2; box-shadow:inset 0 0 0 2px #eef1ff }
-  .tab:focus{ outline:3px solid var(--ring); outline-offset:2px }
-
-  /* ========= Main panel ========= */
-  .panel{
-    background:var(--card);
-    border:1px solid var(--hair);
-    border-radius:var(--radius);
-    padding:22px;
-    box-shadow:var(--shadow);
-    /* Important: let the page scroll, not this element */
-    height:auto;
-    max-height:none;
-    overflow:visible;
-  }
-  .panel h2{ margin:0 0 8px; color:var(--brand-2) }
-  .hidden{ display:none }
-
-  /* ========= Utility / content styles ========= */
-  .pub{ margin:12px 0 0 }
-  .pub-title{ font-weight:700 }
-  .meta{ color:var(--muted); font-size:14px }
-  .contact-card{ margin-top:14px; padding:14px; border:1px dashed var(--hair); border-radius:12px; background:#fff }
-  .portrait{ width:clamp(140px, 40vw, 320px); height:auto; border-radius:12px; object-fit:cover } /* responsive portrait */
-
-  /* ========= Mobile fixes (<= 720px) ========= */
-  @media (max-width: 720px){
-    /* 1) Stack to single column */
-    .grid{ display:block } /* (or: grid-template-columns:1fr) */
-
-    /* 2) Convert left nav to top tab bar */
-    .left{
-      position:static !important;  /* disable sticky on phones */
-      top:auto !important;
-      max-height:none !important;
-      overflow:visible !important;
-      margin:0 -20px 12px;         /* full-bleed feel under container padding */
-      border-left:0; border-right:0; border-radius:0;
+  <style>
+    /* ====== Design tokens (original) ====== */
+    :root{
+      --brand:#a21b2f;        /* deep crimson accent (Ashoka-inspired, not exact) */
+      --brand-2:#1a2b49;      /* slate-blue heading */
+      --ink:#1b2230;          /* text */
+      --muted:#5b6473;        /* secondary text */
+      --bg:#f6f7fb;           /* page background */
+      --card:#ffffff;         /* surface */
+      --ring:rgba(162,27,47,.25);
+      --hair:#e7e9f2;         /* borders */
+      --shadow:0 8px 24px rgba(10,22,50,.06);
+      --radius:16px;
     }
-    .tabs[role="tablist"]{
-      flex-direction:row;
-      gap:8px;
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
-      white-space:nowrap;
-      padding:8px 12px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--bg);
+      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
     }
-    .tab{
-      flex:0 0 auto;             /* scrollable pills */
-      padding:8px 12px;
-      border-radius:999px;
-    }
-
-    /* 3) Ensure main panel isn’t trapped in its own scroll container */
-    .panel{
-      height:auto !important;
-      max-height:none !important;
-      overflow:visible !important;
-    }
-
-    /* 4) Keep the image tidy and not too tall */
-    .portrait{ width:60vw; max-width:320px; max-height:45vh; object-fit:cover }
-
-    /* 5) Neutralize over-assertive overflow/height elsewhere (safety net) */
-    .wrap, .hero, .grid, body, html{ overscroll-behavior:auto }
-  }
-
-  /* ========= Optional: sticky tab bar on mobile =========
-     If you want the tabs to remain visible while scrolling, uncomment:
-  @media (max-width: 720px){
-    .left{
-      position:sticky !important;
-      top:0; z-index:10; background:#fff;
+    a{color:var(--brand-2);text-decoration:none}
+    a:hover{outline:3px solid var(--ring);outline-offset:2px;border-radius:8px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    /* ====== Masthead ====== */
+    .masthead{
+      background:linear-gradient(180deg,#fdfdff, #f6f7fb);
       border-bottom:1px solid var(--hair);
     }
+    .sitebar{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      font-weight:800;letter-spacing:.3px;color:var(--brand-2)
+    }
+    .brand-dot{
+      width:28px;height:28px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, #d24559, var(--brand));
+      border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08)
+    }
+    .nav a{padding:8px 10px;border-radius:10px}
+    .breadcrumb{
+      font-size:14px;color:var(--muted);padding:6px 0 18px 0
+    }
+    .breadcrumb a{color:var(--muted)}
+    .breadcrumb .sep{margin:0 8px;color:#a0a6b2}
+    /* ====== Header block (name + role) ====== */
+    .hero{
+      background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);
+      padding:24px;box-shadow:var(--shadow);
+    }
+    .title{margin:0 0 6px 0;font-size:32px;line-height:1.25;color:var(--brand-2)}
+    .roles{margin:0;color:var(--muted)}
+    .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .tag{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      background:#f8ecf0;color:#8b1528;border:1px solid #f2c9d1
+    }
+    /* ====== Grid ====== */
+    .grid{
+      display:grid;grid-template-columns:320px 1fr;gap:24px;margin-top:24px
+    }
+    @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
+    /* ====== Sidebar card ====== */
+    .card{
+      background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:18px
+    }
+    .sticky{position:sticky;top:18px}
+/*    .portrait{
+      width:100%;aspect-ratio:4/5;border-radius:12px;object-fit:cover;border:1px solid var(--hair);
+      background:linear-gradient(135deg,#eef1ff,#fff)
+    }
+*/
+/* keeps it tidy on mobile and not too huge on desktop */
+.portrait {
+  width: clamp(140px, 40vw, 320px);
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+    .contact dt{font-weight:700;color:var(--brand-2)}
+    .contact dd{margin:0 0 10px 0;color:var(--ink)}
+    .button{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;
+      font-weight:600;border:1px solid #cbd2e6;background:#fff
+    }
+    .button.primary{background:var(--brand);color:#fff;border-color:#8e1a2b;box-shadow:0 2px 0 #8e1a2b}
+    .list-muted{margin:0;padding-left:18px;color:var(--muted)}
+    /* ====== Main content ====== */
+    .section{background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);padding:22px}
+    .section + .section{margin-top:20px}
+    .section h2{margin:0 0 8px 0;color:var(--brand-2);font-size:20px}
+    .kicker{color:var(--muted);font-size:14px;margin-bottom:6px}
+    .item{margin:10px 0 0 0}
+    .pub{margin:12px 0 0 0}
+    .pub-title{font-weight:700}
+    .meta{color:var(--muted);font-size:14px}
+    .linklist{margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
+      background:#f4f6ff;border:1px solid #dfe4ff;color:#323b8b;font-size:13px
+    }
+    /* ====== Footer ====== */
+    .footer{
+      text-align:center;color:var(--muted);font-size:13px;margin:28px 0 12px
+    }
+    /* generic safe default */
+img, svg, video { max-width: 100%; height: auto; display: block; }
+/* --- Mobile layout fixes --- */
+@media (max-width: 720px) {
+  /* 1) Stack to single column */
+  .grid {
+    display: block;              /* or: grid-template-columns: 1fr; */
   }
-  */
-</style>
+
+  /* 2) Make left nav a top tab bar instead of a tall sidebar */
+  .left {
+    position: static !important; /* kill sticky on phones */
+    top: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-bottom: 12px;         /* space below the tab bar */
+    border-radius: 0;            /* optional: make it feel like a top bar */
+    border-left: 0; border-right: 0;
+  }
+  .tabs[role="tablist"] {
+    display: flex;
+    flex-direction: row;         /* horizontal tabs */
+    gap: 8px;
+    overflow-x: auto;            /* allow sideways scroll if needed */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding: 8px 6px;
+  }
+  .tab {
+    flex: 0 0 auto;              /* pill-sized buttons that scroll horizontally */
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+
+  /* 3) Let the main panel size naturally; avoid inner scrolling traps */
+  .panel {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;  /* page scrolls, not the panel */
+  }
+
+  /* If any ancestors force a scroll context, neutralize them on mobile */
+  .wrap, .hero, .grid, .panel, body, html {
+    overscroll-behavior: auto;
+  }
+}
+@media (max-width: 720px) {
+  .grid { display: block; }
+  .left { position: static !important; }
+  .tabs[role="tablist"] { flex-direction: row; overflow-x: auto; white-space: nowrap; }
+  .panel { overflow: visible !important; height: auto !important; }
+}
+  </style>
 </head>
 <body>
 
