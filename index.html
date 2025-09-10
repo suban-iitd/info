@@ -169,6 +169,46 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
   .tabs[role="tablist"] { flex-direction: row; overflow-x: auto; white-space: nowrap; }
   .panel { overflow: visible !important; height: auto !important; }
 }
+/* ===== Side panel scroll fix (add at the very end of your CSS) ===== */
+
+/* Desktop/tablet: keep sticky, but let the sidebar scroll within the viewport */
+@media (min-width: 721px) {
+  .left {
+    position: sticky;          /* keep your sticky behavior */
+    top: 18px;                 /* adjust to your header height if needed */
+    max-height: calc(100vh - 36px);  /* fit inside the viewport */
+    overflow: auto;            /* its own scroll if taller than viewport */
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Sticky breaks if ancestors clip; make sure these don’t create a scroll context */
+  .grid, .wrap {
+    overflow: visible !important;
+  }
+}
+
+/* Mobile: disable sticky + inner scrolling traps, let the PAGE scroll naturally */
+@media (max-width: 720px) {
+  .grid {                      /* stack columns (if you already do, this won't hurt) */
+    display: block;
+  }
+  .left {
+    position: static !important;   /* turn off sticky on phones */
+    top: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;  /* no inner scroll on the sidebar */
+  }
+  /* Main content must not be inside a fixed-height scroller on phones */
+  .panel {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;  /* the page does the scrolling */
+  }
+  /* Safety net: if any ancestor was clipping, stop it on mobile */
+  .container, .wrap, .grid {
+    overflow: visible !important;
+  }
+}
   </style>
 </head>
 <body>
