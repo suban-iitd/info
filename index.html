@@ -163,6 +163,12 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     overscroll-behavior: auto;
   }
 }
+@media (max-width: 720px) {
+  .grid { display: block; }
+  .left { position: static !important; }
+  .tabs[role="tablist"] { flex-direction: row; overflow-x: auto; white-space: nowrap; }
+  .panel { overflow: visible !important; height: auto !important; }
+}
   </style>
 </head>
 <body>
