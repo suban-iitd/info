@@ -209,6 +209,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     overflow: visible !important;
   }
 }
+  nav a { padding: 0.5rem 0.75rem; display:inline-block; }
   </style>
 </head>
 <body>
@@ -230,7 +231,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     <div class="grid" role="region" aria-label="Profile layout">
       <!-- Sidebar -->
       <aside class="card sticky" aria-label="Contact and quick info">
-        <img class="portrait" src="suban-at-work.jpg" alt="Portrait of Subhashis Banerjee" />
+        <img class="portrait" src="suban-at-work.jpg" alt="Subhashis Banerjee" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
         <hr style="border:none;border-top:1px solid var(--hair);margin:16px 0" />
         <dl class="contact">
           <dt>Email</dt>
@@ -242,7 +243,9 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
         </dl>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
           <a class="button primary" href="https://www.ashoka.edu.in/profile/subhashis-banerjee/" target="_blank" rel="noopener">Ashoka Profile</a>
+<!---
           <a class="button" href="mailto:suban@ashoka.edu.in">Email</a>
+--->
         </div>
         <hr style="border:none;border-top:1px solid var(--hair);margin:16px 0" />
         <div>
@@ -258,10 +261,10 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
         <section class="section" aria-labelledby="about">
           <a name="About"><h2 id="about">About</h2></a>
           <p>
-<span style="font-weight: 400;">Subhashis Banerjee is a professor of computer sciece at Ashoka University, Sonipat, India.</span><p>
+<span style="font-weight: 400;">Subhashis Banerjee is a professor of computer science at Ashoka University, Sonipat, India.</span><p>
 <span style="font-weight: 400;">Subhashis was with the Department of Computer Science and Engineering at IIT Delhi from 1990 till August 2023. From June 2021 to May 2023 he was at the Ashoka University on leave from IITD. At IITD he has held the Ministry of Urban Development, Microsoft and Naren Gupta chair professorships. He was the head of the department of computer science at IIT Delhi between 2004-2007 and head of the computer services centre between 2009-2014. Subhashis was also associated with the School of Public Policy and the Centre for Transportation Research and Injury Prevention at IIT Delhi.</span></p>
 <p><span style="font-weight: 400;">Subhashis’ primary areas of research are computer vision and machine learning, with a special emphasis on geometric algorithms. He has been on the editorial boards of the International Journal of Computer Vision and Computers and Graphics, and has published in leading journals and conferences. He has also worked extensively on design of computing and networking infrastructure and IT services and in developing the supercomputing infrastructure at IIT Delhi, which is one of the largest in the country. He has been an academic visitor to several universities and research laboratories all over the world.</span></p>
-<p><span style="font-weight: 400;">Recently he has also developed an interest in policy issues digitalisation and society, including digital identity, electronic voting, data and privacy protection, and fairness and reliability of machine learning algorithms.</span></p>
+<p><span style="font-weight: 400;">Recently he has also developed an interest in policy issues in digitalisation and society, including digital identity, electronic voting, data and privacy protection, and fairness and reliability of machine learning algorithms.</span></p>
 <p><span style="font-weight: 400;">Subhashis graduated in electrical Engineering from Jadavpur University in 1982 and did his Master’s and PhD from the Indian Institute of Science in 1984 and 1989 respectively.</span></p>
           </p>
         </section>
@@ -274,7 +277,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 										<div class="">
 											<div class="sort_card_info">
 												<div class="sortcard_txt">
-													<h3><b>Privacy and Security in large public service applications</b></h3>
+													<h4><b>Privacy and Security in large public service applications</b></h4>
 <p><span style="font-weight: 400;">Governments around the world – and India in particular – are trying to build large data registries for effective delivery of a variety of public services. However, these efforts are often undermined due to serious concerns over privacy risks associated with collection and processing of personally identifiable information. While a rich set of special- purpose privacy-preserving techniques exist in computer science, they are unable to provide end-to-end protection in alignment with legal principles in the absence of an overarching operational architecture to ensure purpose limitation and protection against insider attacks. This either leads to weak privacy protection in large designs, or adoption of overly defensive strategies to protect privacy by compromising on utility.</span></p>
 <p><span style="font-weight: 400;">We investigate the issues in designing an operational architecture for privacy-by-design based on independent regulatory oversight stipulated by most data protection regimes, regulated access control, purpose limitation and data minimisation.</span></p>
 <ul>
@@ -285,7 +288,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Privacy concerns with Aadhaar</span></i><span style="font-weight: 400;">. Subhashis Banerjee, Subodh Sharma. Commun. ACM 62(11): 80, 2019. </span></li>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Privacy and Security of Aadhaar: A Computer Science Perspective</span></i><span style="font-weight: 400;">. Shweta Agrawal, Subhashis Banerjee and Subodh Sharma.  Economic and Political Weekly, September 2017. </span></li>
 </ul>
-<h3><b>Electronic voting</b></h3>
+<h4><b>Electronic voting</b></h4>
 <p><span style="font-weight: 400;">India’s parliamentary election is the largest in the world, with 543 constituencies and well over 1 million voters per constituency on the average, and voting is conducted electronically since 2004. However, there is considerable doubt about the integrity of both the Electronic Voting Machine (EVM) used by the Election Commission of India (ECI) and the procedure for maintaining and updating voters lists.</span></p>
 <p><span style="font-weight: 400;">We analyse the ECI solutions from the points of view of verifiability and compliance with democratic principles. We also investigate a) the possibility of end-to-end verifiable electronic voting that can support voter-verified paper audit trails in a closely coupled manner, and b) the issues with security, integrity and privacy of electoral rolls.</span></p>
 <ul>
@@ -295,7 +298,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Citizens’ Commission on Elections<a href="https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html">’</a> Report on EVMs and VVPAT. </span></i><span style="font-weight: 400;">Madan Lokur, Wajahat Habibullah, Hariparanthaman, Arun Kumar, Subhashis Banerjee, Pamela Philipose, John Dayal, Sundar Burra and M. G. Devasahayam. Economic and Political Weekly, Vol. 57, Issue No. 3, 15 Jan, 2022. (<a href="https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html">https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html</a>)</span></li>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Blockchain vs public bulletin boards for integrity of elections and electoral rolls</span></i><span style="font-weight: 400;">. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee.  The India Forum, August, 2021. (<a href="https://www.theindiaforum.in/article/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls">theindiaforum.in/…/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls</a>)</span></li>
 </ul>
-<h3><b>Computational radiology</b></h3>
+<h4><b>Computational radiology</b></h4>
 <p><span style="font-weight: 400;">In collaboration with the radiology group at AIIMS, New Delhi, we investigate improved detection of breast cancer from mammograms in situations where the presentation is obscure and difficult. We also investigate using other auxiliary information to improve the accuracy of detection.</span></p>
 <p><span style="font-weight: 400;">In a one-off problem, we also addressed detection of Covid from chest X-Ray in a hospital setting.</span></p>
 <ul>
@@ -309,7 +312,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 <li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://pubmed.ncbi.nlm.nih.gov/33471219/">Artificial Intelligence-Assisted Chest X-Ray Assessment</a> Scheme for COVID-19. </span></i><span style="font-weight: 400;">Krithika Rangarajan, Sumanyu Muku, Amit Kumar Garg, Pavan Gabra, Sujay Halkur Shankar, Neeraj Nischal, Kapil Dev Dev Soni, Ashu Seith Bhalla Seith Bhalla, Anant Mohan, Pawan Tiwari, Sushma Bhatnagar, Raghav Bansal, Atin Kumar, Shivanand Gamanagati, Richa Aggarwal, Upendra Baitha, Ashutosh Biswas, Arvind Kumar, Pankaj Jorwal, . Shalimar, A Shariff, Naveet Wig, Rajeshwari Subramanium, Anjan Trikha, Rajesh Malhotra, Randeep Guleria, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. European Radiology. January 2021. (<a href="https://pubmed.ncbi.nlm.nih.gov/33471219/">pubmed.ncbi.nlm.nih.gov/33471219</a>)</span></li>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Simulation Training for Diagnostic Radiology: Use of GAN Generated Images for Resident Training in Mammography</span></i><span style="font-weight: 400;">. Sneha Goswami, Ambikapathi P, Suransh Chopra, Vishwas Lathi, Krithika Rangarajan, Surabhi Vyas, Smriti Hari, Arun Gupta, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. RSNA 2020.</span></li>
 </ul>
-<h3><b>Neurosurgery simulation</b></h3>
+<h4><b>Neurosurgery simulation</b></h4>
 <p><span style="font-weight: 400;">We have an ongoing collaboration with AIIMS where we study and build simulators for neuroendoscopy skills training.</span></p>
 <ul>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">From Forks to Forceps: A New Framework for Instance Segmentation of Surgical Instruments</span></i><span style="font-weight: 400;">. Britty Baby, Daksh Thapar, Mustafa Chasmai, Tamajit Banerjee, Kunal Dargan, Ashish Suri, Subhashis Banerjee, Chetan Arora. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2023.  (</span><a href="https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM"><span style="font-weight: 400;">https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM</span></a><span style="font-weight: 400;">)</span></li>
@@ -319,18 +322,18 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 <ul>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">A review of virtual reality simulators for neuroendoscopy</span></i><span style="font-weight: 400;">. Britty Baby, Ramandeep Singh, Ashish Suri, Rohan Raju Dhanakshirur, Argha Chakraborty, Subodh Kumar, Prem Kumar Kalra, Subhashis Banerjee.  Neurosurgical Review, Volume 43, pages 1255-1272, 2020.</span></li>
 </ul>
-<h3><b>Predicting development indicators using satellite imagery</b></h3>
+<h4><b>Predicting development indicators using satellite imagery</b></h4>
 <p><span style="font-weight: 400;">We develop a set of machine learning based tools for accurate prediction of socio-economic indicators from daytime satellite imagery. The diverse set of indicators are often not intuitively related to observable features in satellite images, and are not even always well correlated with each other. Our predictive tool is more accurate than using night light as a proxy, and can be used to predict missing data, smooth out noise in surveys, monitor development progress of a region, and flag potential anomalies</span></p>
 <ul>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Using satellites and artificial intelligence to measure health and material-living standards in India.</span></i><span style="font-weight: 400;">  Adel Daoud, Felipe Jordan, Makkunda Sharma, Sourabh Bikash Paul, Fredrik Johansson, Devdatt Dubhashi, Subhashis Banerjee.. Social Indicators Research. April 29, 2023. (</span><a href="https://doi.org/10.1007/s11205-023-03112-x"><span style="font-weight: 400;">https://doi.org/10.1007/s11205-023-03112-x</span></a><span style="font-weight: 400;">)</span></li>
 <li style="font-weight: 400;"><a href="https://arxiv.org/abs/1712.02282"><i><span style="font-weight: 400;">On monitoring development indicators using high resolution satellite images</span></i></a><span style="font-weight: 400;">. Potnuru Kishen Suraj, Ankesh Gupta, Makkunda Sharma, Sourabh Bikas Paul, Subhashis Banerjee, December 2017. ()</span></li>
 </ul>
-<h3><b>On large-scale 3D reconstruction</b></h3>
+<h4><b>On large-scale 3D reconstruction</b></h4>
 <p><span style="font-weight: 400;">We look at large scale (city scale) 3D reconstruction from image collections.</span></p>
 <ul>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Divide and Conquer: A Hierarchical Approach to Large-scale Structure-from-Motion</span></i><span style="font-weight: 400;">. Brojeshwar Bhowmick, Suvam Patra, Avishek Chatterjee, Venu Madhav Govindu, Subhashis Banerjee. Computer Vision and Image Understanding (CVIU), April 2017. (<a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346">https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346</a>)</span></li>
 </ul>
-<h3><b>Simultaneous Localisation and Mapping (SLAM) and Ego-motion</b></h3>
+<h4><b>Simultaneous Localisation and Mapping (SLAM) and Ego-motion</b></h4>
 <p><span style="font-weight: 400;">We briefly looked at some problems related to self-driving cars, in particular that of monocular SLAM and ego-motion.</span></p>
 <ul>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;">Batch based Monocular SLAM for Egocentric Videos. </span></i><span style="font-weight: 400;">Suvam Patra, Kartikeya Gupta, Faran Ahmad, Chetan Arora, Subhashis Banerjee.  IEEE Winter Conference on Applications of Computer Vision (WACV), March 2019. (<a href="https://arxiv.org/abs/1707.05564">https://arxiv.org/abs/1707.05564</a>)</span></li>
@@ -338,7 +341,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 <li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://ieeexplore.ieee.org/document/8296348">Deep CNN with Color Lines model for unmarked road segmentation</a>. </span></i><span style="font-weight: 400;">Shashank Yadav, Suvam Patra, Chetan Arora, Subhashis Banerjee.  IEEE International Conference on Image Processing (ICIP 2017), Beijing, September 2017 (<a href="https://ieeexplore.ieee.org/document/8296348">ieeexplore.ieee.org/document/8296348</a>)</span></li>
 <li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://www.computer.org/csdl/proceedings-article/wacv/2017/07926640/12OmNviHKiX">Computing Egomotion with Local Loop Closures for Egocentric Videos</a>. Suvam Patra, Himanshu Aggarwal, Himani Arora, Chetan Arora, Subhashis Banerjee. IEEE Winter Conference on Applications of Computer Vision (WACV), March 2017 </span></i></li>
 </ul>
-<h3><b>On reliability of machine learning</b></h3>
+<h4><b>On reliability of machine learning</b></h4>
 <p><span style="font-weight: 400;">We investigate reliability issues of machine learning, especially with respect to adversarial attacks.</span></p>
 <p><i><span style="font-weight: 400;">REGroup: Rank-aggregating Ensemble of Generative Classifiers for Robust Predictions. </span></i><span style="font-weight: 400;">Lokender Tiwari, Anish Madan, Saket Anand, Subhashis Banerjee.  IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2022. (</span><a href="https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf"><span style="font-weight: 400;">https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf</span></a><span style="font-weight: 400;">)</span></p>
 												</div>
