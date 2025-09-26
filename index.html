@@ -1,387 +1,395 @@
 <!doctype html>
 <html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Subhashis Banerjee</title>
-  <meta name="description" content="Subhashis Banerjee — Professor, Department of Computer Science." />
-  <style>
-    /* ====== Design tokens (original) ====== */
-    :root{
-      --brand:#a21b2f;        /* deep crimson accent (Ashoka-inspired, not exact) */
-      --brand-2:#1a2b49;      /* slate-blue heading */
-      --ink:#1b2230;          /* text */
-      --muted:#5b6473;        /* secondary text */
-      --bg:#f6f7fb;           /* page background */
-      --card:#ffffff;         /* surface */
-      --ring:rgba(162,27,47,.25);
-      --hair:#e7e9f2;         /* borders */
-      --shadow:0 8px 24px rgba(10,22,50,.06);
-      --radius:16px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--ink);
-      background:var(--bg);
-      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
-    }
-    a{color:var(--brand-2);text-decoration:none}
-    a:hover{outline:3px solid var(--ring);outline-offset:2px;border-radius:8px}
-    .container{max-width:1100px;margin:0 auto;padding:20px}
-    /* ====== Masthead ====== */
-    .masthead{
-      background:linear-gradient(180deg,#fdfdff, #f6f7fb);
-      border-bottom:1px solid var(--hair);
-    }
-    .sitebar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;padding:14px 0;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-      font-weight:800;letter-spacing:.3px;color:var(--brand-2)
-    }
-    .brand-dot{
-      width:28px;height:28px;border-radius:50%;
-      background:radial-gradient(circle at 35% 35%, #d24559, var(--brand));
-      border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.08)
-    }
-    .nav a{padding:8px 10px;border-radius:10px}
-    .breadcrumb{
-      font-size:14px;color:var(--muted);padding:6px 0 18px 0
-    }
-    .breadcrumb a{color:var(--muted)}
-    .breadcrumb .sep{margin:0 8px;color:#a0a6b2}
-    /* ====== Header block (name + role) ====== */
-    .hero{
-      background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);
-      padding:24px;box-shadow:var(--shadow);
-    }
-    .title{margin:0 0 6px 0;font-size:32px;line-height:1.25;color:var(--brand-2)}
-    .roles{margin:0;color:var(--muted)}
-    .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
-    .tag{
-      font-size:12px;padding:6px 10px;border-radius:999px;
-      background:#f8ecf0;color:#8b1528;border:1px solid #f2c9d1
-    }
-    /* ====== Grid ====== */
-    .grid{
-      display:grid;grid-template-columns:320px 1fr;gap:24px;margin-top:24px
-    }
-    @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
-    /* ====== Sidebar card ====== */
-    .card{
-      background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:18px
-    }
-    .sticky{position:sticky;top:18px}
-/*    .portrait{
-      width:100%;aspect-ratio:4/5;border-radius:12px;object-fit:cover;border:1px solid var(--hair);
-      background:linear-gradient(135deg,#eef1ff,#fff)
-    }
-*/
-/* keeps it tidy on mobile and not too huge on desktop */
-.portrait {
-  width: clamp(140px, 40vw, 320px);
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-}
-    .contact dt{font-weight:700;color:var(--brand-2)}
-    .contact dd{margin:0 0 10px 0;color:var(--ink)}
-    .button{
-      display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;
-      font-weight:600;border:1px solid #cbd2e6;background:#fff
-    }
-    .button.primary{background:var(--brand);color:#fff;border-color:#8e1a2b;box-shadow:0 2px 0 #8e1a2b}
-    .list-muted{margin:0;padding-left:18px;color:var(--muted)}
-    /* ====== Main content ====== */
-    .section{background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);padding:22px}
-    .section + .section{margin-top:20px}
-    .section h2{margin:0 0 8px 0;color:var(--brand-2);font-size:20px}
-    .kicker{color:var(--muted);font-size:14px;margin-bottom:6px}
-    .item{margin:10px 0 0 0}
-    .pub{margin:12px 0 0 0}
-    .pub-title{font-weight:700}
-    .meta{color:var(--muted);font-size:14px}
-    .linklist{margin-top:6px;display:flex;flex-wrap:wrap;gap:8px}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
-      background:#f4f6ff;border:1px solid #dfe4ff;color:#323b8b;font-size:13px
-    }
-    /* ====== Footer ====== */
-    .footer{
-      text-align:center;color:var(--muted);font-size:13px;margin:28px 0 12px
-    }
-    /* generic safe default */
-img, svg, video { max-width: 100%; height: auto; display: block; }
-/* --- Mobile layout fixes --- */
-@media (max-width: 720px) {
-  /* 1) Stack to single column */
-  .grid {
-    display: block;              /* or: grid-template-columns: 1fr; */
-  }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Subhashis Banerjee | Academic Profile</title>
+    <meta name="description" content="Subhashis Banerjee — Professor, Department of Computer Science, Ashoka University." />
+    <style>
+        /* === 1. DESIGN TOKENS (Simplified & Centralized) === */
+        :root {
+            --brand: #a21b2f;         /* Deep crimson accent */
+            --brand-light: #d24559;   /* Lighter crimson */
+            --heading: #1a2b49;       /* Slate-blue heading */
+            --ink: #1b2230;           /* Primary text */
+            --muted: #5b6473;         /* Secondary text/metadata */
+            --bg: #f8f9fb;            /* Light page background */
+            --card: #ffffff;          /* Surface */
+            --hair: #e7e9f2;          /* Subtle borders */
+            --shadow: 0 4px 12px rgba(10, 22, 50, .05);
+            --radius: 12px;
+            --font-stack: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        }
 
-  /* 2) Make left nav a top tab bar instead of a tall sidebar */
-  .left {
-    position: static !important; /* kill sticky on phones */
-    top: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    margin-bottom: 12px;         /* space below the tab bar */
-    border-radius: 0;            /* optional: make it feel like a top bar */
-    border-left: 0; border-right: 0;
-  }
-  .tabs[role="tablist"] {
-    display: flex;
-    flex-direction: row;         /* horizontal tabs */
-    gap: 8px;
-    overflow-x: auto;            /* allow sideways scroll if needed */
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-    padding: 8px 6px;
-  }
-  .tab {
-    flex: 0 0 auto;              /* pill-sized buttons that scroll horizontally */
-    padding: 8px 12px;
-    border-radius: 999px;
-  }
+        /* === 2. BASE RESET & TYPOGRAPHY === */
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--bg);
+            font: 16px/1.6 var(--font-stack);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4 {
+            color: var(--heading);
+            line-height: 1.25;
+            margin: 0 0 0.5em 0;
+        }
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.5rem; border-bottom: 2px solid var(--hair); padding-bottom: 0.25em; margin-bottom: 1em; }
+        h3 { font-size: 1.2rem; margin-top: 1.5em; }
+        h4 { font-size: 1.05rem; }
+        p { margin-top: 0; }
+        
+        a { color: var(--brand); text-decoration: none; }
+        a:hover { text-decoration: underline; color: var(--brand-light); }
+        
+        /* Anchor targets */
+        a[name] {
+            display: block;
+            position: relative;
+            top: -70px; /* Offset for fixed header/mobile jump */
+            visibility: hidden;
+        }
 
-  /* 3) Let the main panel size naturally; avoid inner scrolling traps */
-  .panel {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;  /* page scrolls, not the panel */
-  }
+        /* === 3. LAYOUT & CONTAINERS === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default: single column for mobile */
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        /* Mobile: Sidebar is a standard block element and scrolls with the page */
+        
+        @media (min-width: 768px) {
+            .container { padding: 2rem 1rem; }
+            .grid {
+                grid-template-columns: 300px 1fr; /* Desktop: sidebar + main */
+            }
+            .sidebar-card { /* Apply sticky behavior ONLY on desktop */
+                position: sticky;
+                top: 1.5rem;
+                align-self: start;
+            }
+        }
 
-  /* If any ancestors force a scroll context, neutralize them on mobile */
-  .wrap, .hero, .grid, .panel, body, html {
-    overscroll-behavior: auto;
-  }
-}
-@media (max-width: 720px) {
-  .grid { display: block; }
-  .left { position: static !important; }
-  .tabs[role="tablist"] { flex-direction: row; overflow-x: auto; white-space: nowrap; }
-  .panel { overflow: visible !important; height: auto !important; }
-}
-/* ===== Side panel scroll fix (add at the very end of your CSS) ===== */
+        /* === 4. CARD & SECTION STYLES === */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--hair);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+        .hero { /* Header block */
+            padding: 2rem 1.5rem;
+        }
+        .portrait {
+            width: 100%;
+            max-width: 250px; /* Cap image size */
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
 
-/* Desktop/tablet: keep sticky, but let the sidebar scroll within the viewport */
-/* Desktop/large screens: keep it sticky */
-@media (min-width: 1024px) {
-  .sidebar {
-    position: sticky;
-    top: 1rem;          /* adjust as you like */
-    align-self: start;  /* if using grid */
-    height: max-content;
-  }
-}
+        /* === 5. CONTENT COMPONENTS === */
+        .roles { margin: 0; color: var(--muted); font-size: 1.1rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+        .tag, .pill {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            background: #f4f6ff;
+            color: var(--heading);
+            border: 1px solid #dfe4ff;
+            white-space: nowrap;
+        }
+        .tag a, .pill a { color: var(--heading); text-decoration: none; }
+        .tag:hover, .pill:hover { background: #e0e6ff; }
+        
+        .contact dt { font-weight: 700; color: var(--heading); margin-top: 1rem; }
+        .contact dd { margin: 0 0 0.5rem 0; }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid var(--hair);
+            background: var(--card);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .button.primary {
+            background: var(--brand);
+            color: var(--card);
+            border-color: var(--brand);
+        }
+        .button.primary:hover { background: var(--brand-light); border-color: var(--brand-light); color: var(--card); }
 
-/* Mobile/tablet: let it flow with the page */
-@media (max-width: 480px) {
-  .sidebar {
-    position: relative;   /* or `relative` */
-    top: auto;
-    height: auto;
-    width: auto;
-  }
-}
-  nav a { padding: 0.5rem 0.75rem; display:inline-block; }
-  </style>
+        .list-unstyled, ul {
+            padding-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+        .list-unstyled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-muted li { color: var(--muted); }
+        .list-unstyled li { margin-bottom: 0.5rem; }
+        .list-unstyled li::before {
+            content: "•"; /* Simple custom bullet */
+            color: var(--brand);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* Research list styling */
+        .research-area h4 {
+            margin-top: 2rem;
+            color: var(--brand);
+        }
+        .research-area p { margin-bottom: 1rem; }
+        .research-area ul {
+          /*  list-style-type: none; */ /* Remove default bullets for publications */
+            /* padding-left: 0;*/
+        }
+        .research-area ul li {
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+        .research-area ul li i { font-style: normal; font-weight: 600; }
+        .research-area ul li a { text-decoration: underline; }
+        .research-area ul li a:hover { text-decoration: none; }
+        
+        /* Commentary list styling */
+        .commentary-list {
+         /*   list-style-type: none;
+            padding-left: 0; */
+        }
+        .commentary-list li {
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        .commentary-list li i { font-style: normal; font-weight: 600; }
+        .commentary-list li a { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <main class="container" id="content">
+        <header class="hero card" role="banner">
+            <h1 class="title">Subhashis Banerjee</h1>
+            <p class="roles">Professor, Department of Computer Science · Ashoka University</p>
+            <div class="tags" aria-label="Quick navigation links">
+                <span class="tag"><a href="#about">About</a></span>
+                <span class="tag"><a href="#research">Research</a></span>
+                <span class="tag"><a href="#courses">Courses</a></span>
+                <span class="tag"><a href="#commentaries">Commentaries</a></span>
+            </div>
+        </header>
 
-  <main class="container" id="content">
-    <!-- ====== Header block (Name + Role) ====== -->
-    <header class="hero" role="banner">
-      <h1 class="title">Subhashis Banerjee</h1>
-      <p class="roles">Professor, Department of Computer Science · Ashoka University</p>
-      <div class="tags" aria-label="Research areas">
-        <span class="tag"><a href="#About">About</a></span>
-        <span class="tag"><a href="#research">Research</a></span>
-        <span class="tag"><a href="#courses">Courses</a></span>
-        <span class="tag"><a href="#opeds">Commentaries</a></span>
-      </div>
-    </header>
+        <div class="grid" role="region" aria-label="Profile details">
+            <aside class="card sticky" aria-label="Contact and quick info">
+                <img class="portrait" src="suban-at-work.jpg" alt="Subhashis Banerjee" />
+                
+                <hr style="border:none;border-top:1px solid var(--hair);margin:1.5rem 0" />
 
-    <!-- ====== Grid layout ====== -->
-    <div class="grid" role="region" aria-label="Profile layout">
-      <!-- Sidebar -->
-      <aside class="card sticky" aria-label="Contact and quick info">
-        <img class="portrait" src="suban-at-work.jpg" alt="Subhashis Banerjee" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
-        <hr style="border:none;border-top:1px solid var(--hair);margin:16px 0" />
-        <dl class="contact">
-          <dt>Email</dt>
-          <dd><a href="mailto:suban@ashoka.edu.in">suban@ashoka.edu.in</a></dd>
+                <dl class="contact">
+                    <dt>Email</dt>
+                    <dd><a href="mailto:suban@ashoka.edu.in">suban@ashoka.edu.in</a></dd>
 
-          <dt>Affiliation</dt>
-          <dd>Department of Computer Science, Ashoka University<br>
-          Sonipat, Haryana, India</dd>
-        </dl>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-          <a class="button primary" href="https://www.ashoka.edu.in/profile/subhashis-banerjee/" target="_blank" rel="noopener">Ashoka Profile</a>
-          <a class="button" target="_blank" href=cv.pdf>Biodata</a>
-        </div>
-        <hr style="border:none;border-top:1px solid var(--hair);margin:16px 0" />
-        <div>
-          <div class="kicker">Education</div>
-          <ul class="list-muted">
-            <li>Ph.D., Indian Institute of Science (IISc), Bengaluru</li>
-          </ul>
-        </div>
-      </aside>
+                    <dt>Affiliation</dt>
+                    <dd>Department of Computer Science, Ashoka University<br>
+                    Sonipat, Haryana, India</dd>
+                </dl>
+                
+                <div style="margin-top:1.5rem;">
+                    <a class="button primary" href="https://www.ashoka.edu.in/profile/subhashis-banerjee/" target="_blank" rel="noopener">Ashoka Profile</a>
+                    <a class="button" target="_blank" href="cv.pdf">Biodata (CV)</a>
+                </div>
+                
+                <hr style="border:none;border-top:1px solid var(--hair);margin:1.5rem 0" />
+                
+                <div class="education">
+                    <h4 style="margin-top:0;">Education</h4>
+                    <ul class="list-unstyled list-muted">
+                        <li>Ph.D., Indian Institute of Science (IISc), Bengaluru</li>
+                    </ul>
+                </div>
+            </aside>
 
-      <!-- Main content -->
-      <div>
-        <section class="section" aria-labelledby="about">
-          <a name="About"><h2 id="about">About</h2></a>
-          <p>
-<span style="font-weight: 400;">Subhashis Banerjee is a professor of computer science at Ashoka University, Sonipat, India.</span><p>
-<span style="font-weight: 400;">Subhashis was with the Department of Computer Science and Engineering at IIT Delhi from 1990 till August 2023. From June 2021 to May 2023 he was at the Ashoka University on leave from IITD. At IITD he has held the Ministry of Urban Development, Microsoft and Naren Gupta chair professorships. He was the head of the department of computer science at IIT Delhi between 2004-2007 and head of the computer services centre between 2009-2014. Subhashis was also associated with the School of Public Policy and the Centre for Transportation Research and Injury Prevention at IIT Delhi.</span></p>
-<p><span style="font-weight: 400;">Subhashis’ primary areas of research are computer vision and machine learning, with a special emphasis on geometric algorithms. He has been on the editorial boards of the International Journal of Computer Vision and Computers and Graphics, and has published in leading journals and conferences. He has also worked extensively on design of computing and networking infrastructure and IT services and in developing the supercomputing infrastructure at IIT Delhi, which is one of the largest in the country. He has been an academic visitor to several universities and research laboratories all over the world.</span></p>
-<p><span style="font-weight: 400;">Recently he has also developed an interest in policy issues in digitalisation and society, including digital identity, electronic voting, data and privacy protection, and fairness and reliability of machine learning algorithms.</span></p>
-<p><span style="font-weight: 400;">Subhashis graduated in electrical Engineering from Jadavpur University in 1982 and did his Master’s and PhD from the Indian Institute of Science in 1984 and 1989 respectively.</span></p>
-          </p>
-        </section>
+            <div class="main-content">
+                
+                <section class="card" aria-labelledby="about-heading">
+                    <a name="about"></a>
+                    <h2 id="about-heading">About</h2>
+                    <p>Subhashis Banerjee is a professor of computer science at Ashoka University, Sonipat, India.</p>
+                    <p>Subhashis was with the Department of Computer Science and Engineering at IIT Delhi from 1990 till August 2023. From June 2021 to May 2023 he was at Ashoka University on leave from IITD. At IITD he has held the Ministry of Urban Development, Microsoft and Naren Gupta chair professorships. He was the head of the department of computer science at IIT Delhi between 2004-2007 and head of the computer services centre between 2009-2014. Subhashis was also associated with the School of Public Policy and the Centre for Transportation Research and Injury Prevention at IIT Delhi.</p>
+                    <p>Subhashis’ primary areas of research are computer vision and machine learning, with a special emphasis on geometric algorithms. He has been on the editorial boards of the International Journal of Computer Vision and Computers and Graphics, and has published in leading journals and conferences. He has also worked extensively on design of computing and networking infrastructure and IT services and in developing the supercomputing infrastructure at IIT Delhi, which is one of the largest in the country. He has been an academic visitor to several universities and research laboratories all over the world.</p>
+                    <p>Recently he has also developed an interest in policy issues in digitalisation and society, including digital identity, electronic voting, data and privacy protection, and fairness and reliability of machine learning algorithms.</p>
+                    <p>Subhashis graduated in electrical Engineering from Jadavpur University in 1982 and did his Master’s and PhD from the Indian Institute of Science in 1984 and 1989 respectively.</p>
+                </section>
 
-        <section class="section" aria-labelledby="research">
-          <a name="research"><h2 id="research">Recent research</h2></a>
-																		<div class="tab-pane fade "
-										id="recentResearch"
-										role="tabpanel" aria-labelledby="v-pills-settings-tab">
-										<div class="">
-<p>
-      <div class="tags" aria-label="Research areas">
-        <span class="tag"><a href="#privacy">Privacy and security</a></span>
-        <span class="tag"><a href="#voting">Elctronic voting</a></span>
-        <span class="tag"><a href="#radiology">Computational radiology</a></span>
-        <span class="tag"><a href="#vision">Computer vision qnd machine learning</a></span>
-      </div>
-<p>	       										<div class="sort_card_info">
-												<div class="sortcard_txt">
-													<a name="privacy" <h4><b>Privacy and Security in large public service applications</b></h4></a>
-<p><span style="font-weight: 400;">Governments around the world – and India in particular – are trying to build large data registries for effective delivery of a variety of public services. However, these efforts are often undermined due to serious concerns over privacy risks associated with collection and processing of personally identifiable information. While a rich set of special- purpose privacy-preserving techniques exist in computer science, they are unable to provide end-to-end protection in alignment with legal principles in the absence of an overarching operational architecture to ensure purpose limitation and protection against insider attacks. This either leads to weak privacy protection in large designs, or adoption of overly defensive strategies to protect privacy by compromising on utility.</span></p>
-<p><span style="font-weight: 400;">We investigate the issues in designing an operational architecture for privacy-by-design based on independent regulatory oversight stipulated by most data protection regimes, regulated access control, purpose limitation and data minimisation.</span></p>
-<ul>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Traceable mixnets</span></i><span style="font-weight: 400;">. Prashant Agrawal, Abhinav Nakarmi, Mahavir Prasad Jhawar, Subodh Sharma, Subhashis Banerjee. Privacy Enhancing Technology Symposium (PoPETs/PETS), July 2024. (</span><a href="blank"><span style="font-weight: 400;">https://arxiv.org/abs/2305.08138</span></a><span style="font-weight: 400;">)</span><span style="font-weight: 400;">. </span></li>
-<li style="font-weight: 400;"><span style="font-weight: 400;"><em>On health data architecture design</em>. Prashant Agrawal, Subodh Sharma, Ambuj Sagar, Subhashis Banerjee. Book chapter in </span><span style="font-weight: 400;">Private and controversial: When public health and privacy meet in India</span><span style="font-weight: 400;">. Edited by Smriti Parsheera. Harper Collins. January, 2023. </span><span style="font-weight: 400;">(</span><a href="https://www.cse.iitd.ac.in/~suban/reports/ndhm2.pdf"><span style="font-weight: 400;">https://www.cse.iitd.ac.in/~suban/reports/ndhm2.pdf</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Elements of an accountability-based framework for privacy protection.</span></i><span style="font-weight: 400;"> Prashant Agrawal, Anubhutie Singh, Malavika Raghavan, Subodh Sharma, Subhashis Banerjee. 2021. (working paper) </span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">An operational architecture for privacy-by-design in large public service applications</span></i><span style="font-weight: 400;">. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee.  2020 (working paper)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Privacy concerns with Aadhaar</span></i><span style="font-weight: 400;">. Subhashis Banerjee, Subodh Sharma. Commun. ACM 62(11): 80, 2019. </span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Privacy and Security of Aadhaar: A Computer Science Perspective</span></i><span style="font-weight: 400;">. Shweta Agrawal, Subhashis Banerjee and Subodh Sharma.  Economic and Political Weekly, September 2017. </span></li>
-</ul>
-<a name="voting"><h4><b>Electronic voting</b></h4></a>
-<p><span style="font-weight: 400;">India’s parliamentary election is the largest in the world, with 543 constituencies and well over 1 million voters per constituency on the average, and voting is conducted electronically since 2004. However, there is considerable doubt about the integrity of both the Electronic Voting Machine (EVM) used by the Election Commission of India (ECI) and the procedure for maintaining and updating voters lists.</span></p>
-<p><span style="font-weight: 400;">We analyse the ECI solutions from the points of view of verifiability and compliance with democratic principles. We also investigate a) the possibility of end-to-end verifiable electronic voting that can support voter-verified paper audit trails in a closely coupled manner, and b) the issues with security, integrity and privacy of electoral rolls.</span></p>
-<ul>
-<li><em>Publicly auditable privacy-preserving electoral rolls.</em> <span style="font-weight: 400;">Prashant Agrawal,  Mahabir Prasad Jhanwar, Subodh Sharma, Subhashis Banerjee. IEEE Computer Security Foundations. July, 2024. (<a href="https://arxiv.org/abs/2402.11582">https://arxiv.org/abs/2402.11582</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">OpenVoting: Recoverability from failures in dual voting</span></i><span style="font-weight: 400;">. Prashant Agrawal, Kabir Tomer, Abhinav Nakarmi, Mahabir Prasad Jhanwar, Subodh Sharma, Subhashis Banerjee. E- Vote-ID – The International Conference for Electronic Voting, Luxembourg City, October 2023. (</span><a href="https://arxiv.org/abs/1908.09557"><span style="font-weight: 400;">https://arxiv.org/abs/1908.09557</span></a><span style="font-weight: 400;">)</span><span style="font-weight: 400;">.  </span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Traceable mixnets</span></i><span style="font-weight: 400;">. Prashant Agrawal, Abhinav Nakarmi, Mahavir Prasad Jhawar, Subodh Sharma, Subhashis Banerjee. Privacy Enhancing Technology Symposium (PoPETs/PETS), July 2024. (</span><a href="blank"><span style="font-weight: 400;">https://arxiv.org/abs/2305.08138</span></a><span style="font-weight: 400;">)</span><span style="font-weight: 400;">. </span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Citizens’ Commission on Elections<a href="https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html">’</a> Report on EVMs and VVPAT. </span></i><span style="font-weight: 400;">Madan Lokur, Wajahat Habibullah, Hariparanthaman, Arun Kumar, Subhashis Banerjee, Pamela Philipose, John Dayal, Sundar Burra and M. G. Devasahayam. Economic and Political Weekly, Vol. 57, Issue No. 3, 15 Jan, 2022. (<a href="https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html">https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Blockchain vs public bulletin boards for integrity of elections and electoral rolls</span></i><span style="font-weight: 400;">. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee.  The India Forum, August, 2021. (<a href="https://www.theindiaforum.in/article/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls">theindiaforum.in/…/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls</a>)</span></li>
-</ul>
-<a name="radiology"><h4><b>Computational radiology</b></h4></a>
-<p><span style="font-weight: 400;">In collaboration with the radiology group at AIIMS, New Delhi, we investigate improved detection of breast cancer from mammograms in situations where the presentation is obscure and difficult. We also investigate using other auxiliary information to improve the accuracy of detection.</span></p>
-<p><span style="font-weight: 400;">In a one-off problem, we also addressed detection of Covid from chest X-Ray in a hospital setting.</span></p>
-<ul>
-<li><em>Simulation training in mammography with AI-generated images: a multireader study</em>. Krithika Rangarajan, Veeramakali Vignesh Manivannan, Harpinder Singh, Amit Gupta, Hrithik Maheshwari, Rishparn Gogoi, Debashish Gogoi, Rupam Jyoti Das, Smriti Hari, Surabhi Vyas, Raju Sharma, Shivam Pandey, V. Seenu, Subhashis Banerjee, Vinay Namboodiri and Chetan Arora. European Radiology. August 2024. (<a href="https://doi.org/10.1007/s00330-024-11005-x">https://doi.org/10.1007/s00330-024-11005-x</a>)</li>
-<li><em>Reproducibility and Explainability of Deep Learning in Mammography: A Systematic Review of Literature</em>. Deeksha Bhalla, Krithika Rangarajan, Tany Chandra,  Subhashis Banerjee, Chetan Arora. The Indian Journal of Radiology and Imaging. October 2023. (<a href="http://dx.doi.org/10.1055/s-0043-1775737">10.1055/s-0043-1775737</a>)</li>
-<li><i><span style="font-weight: 400;">Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts</span></i><span style="font-weight: 400;">.  Krithika Rangarajan, P Aggarwal, D K Gupta, Rohan Dhanakshirur, Akhil Baby, Chandan Paul, A K Gupta, Smriti Hari, Subhashis Banerjee, Chetan Arora. European Radiology. June 2023. (</span><a href="https://doi.org/10.1007/s00330-023-09717-7"><span style="font-weight: 400;">https://doi.org/10.1007/s00330-023-09717-7</span></a><span style="font-weight: 400;">) </span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Building and evaluating an artificial intelligence algorithm: A practical guide for practicing oncologists</span></i><span style="font-weight: 400;">. Anupama Ramachandran, Deeksha Bhalla, Krithika Rangarajan, Raja Pramanik, Subhashis Banerjee, Chetan Arora. Artif Intell Cancer. Jul 28, 2022; 3(3): 42-53.  (</span><a href="https://doi.org/10.35713/aic.v3.i3.42"><span style="font-weight: 400;">https://doi.org/10.35713/aic.v3.i3.42</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Ultra-high resolution, multi-scale, context-aware approach for small cancers on Mammography</span></i><span style="font-weight: 400;">. Krithika Rangarajan, Aman Gupta, Saptarshi Dasgupta, Uday Marri, Arun Kumar Gupta, Smriti Hari, Subhashis Banerjee, Chetan Arora.  Scientific Reports 12, 11622 (2022). (</span><a href="https://doi.org/10.1038/s41598-022-15259-7"><span style="font-weight: 400;">https://doi.org/10.1038/s41598-022-15259-7</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Basic principles of AI simplified for a Medical Practitioner: Pearls and Pitfalls in Evaluating AI algorithms</span></i><span style="font-weight: 400;">. Deeksha Bhalla, Anupama Ramachandran, Krithika Rangarajan, Rohan Dhanakshirur, Subhashis Banerjee, Chetan Arora. </span><span style="font-weight: 400;">Current Problems in Diagnostic Radiology, 2022. ISSN 0363-0188. (</span><a href="https://doi.org/10.1067/j.cpradiol.2022.04.003"><span style="font-weight: 400;">https://doi.org/10.1067/j.cpradiol.2022.04.003</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://pubmed.ncbi.nlm.nih.gov/33471219/">Artificial Intelligence-Assisted Chest X-Ray Assessment</a> Scheme for COVID-19. </span></i><span style="font-weight: 400;">Krithika Rangarajan, Sumanyu Muku, Amit Kumar Garg, Pavan Gabra, Sujay Halkur Shankar, Neeraj Nischal, Kapil Dev Dev Soni, Ashu Seith Bhalla Seith Bhalla, Anant Mohan, Pawan Tiwari, Sushma Bhatnagar, Raghav Bansal, Atin Kumar, Shivanand Gamanagati, Richa Aggarwal, Upendra Baitha, Ashutosh Biswas, Arvind Kumar, Pankaj Jorwal, . Shalimar, A Shariff, Naveet Wig, Rajeshwari Subramanium, Anjan Trikha, Rajesh Malhotra, Randeep Guleria, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. European Radiology. January 2021. (<a href="https://pubmed.ncbi.nlm.nih.gov/33471219/">pubmed.ncbi.nlm.nih.gov/33471219</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Simulation Training for Diagnostic Radiology: Use of GAN Generated Images for Resident Training in Mammography</span></i><span style="font-weight: 400;">. Sneha Goswami, Ambikapathi P, Suransh Chopra, Vishwas Lathi, Krithika Rangarajan, Surabhi Vyas, Smriti Hari, Arun Gupta, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. RSNA 2020.</span></li>
-</ul>
-<a name="vision"><h4><b>Computer vision and machine learning</b></h4></a>
-<p><span style="font-weight: 400;">We do a variety of applications of computer vision and machine learning spanning neurosurgery, satellite imaging, 3D reconstruction, SLAM, etc..</span></p>
-<ul>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Using satellites and artificial intelligence to measure health and material-living standards in India.</span></i><span style="font-weight: 400;">  Adel Daoud, Felipe Jordan, Makkunda Sharma, Sourabh Bikash Paul, Fredrik Johansson, Devdatt Dubhashi, Subhashis Banerjee.. Social Indicators Research. April 29, 2023. (</span><a href="https://doi.org/10.1007/s11205-023-03112-x"><span style="font-weight: 400;">https://doi.org/10.1007/s11205-023-03112-x</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">From Forks to Forceps: A New Framework for Instance Segmentation of Surgical Instruments</span></i><span style="font-weight: 400;">. Britty Baby, Daksh Thapar, Mustafa Chasmai, Tamajit Banerjee, Kunal Dargan, Ashish Suri, Subhashis Banerjee, Chetan Arora. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2023.  (</span><a href="https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM"><span style="font-weight: 400;">https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM</span></a><span style="font-weight: 400;">)</span></li>
-<li><i><span style="font-weight: 400;">REGroup: Rank-aggregating Ensemble of Generative Classifiers for Robust Predictions. </span></i><span style="font-weight: 400;">Lokender Tiwari, Anish Madan, Saket Anand, Subhashis Banerjee.  IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2022. (</span><a href="https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf"><span style="font-weight: 400;">https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Representation Learning using Rank Loss for Robust Neurosurgical Skills Evaluation</span></i><span style="font-weight: 400;">. Britty Baby, Mustafa Chasmai, Tamajit Banerjee, Ashish Suri, Subhashis Banerjee, Chetan Arora. International Conference on Image Processing (ICIP), October 2022. (</span><a href="https://ieeexplore.ieee.org/document/9897932"><span style="font-weight: 400;">https://ieeexplore.ieee.org/document/9897932</span></a><span style="font-weight: 400;">)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">A Review of Physical Simulators for Neuroendoscopy Skills Training</span></i><span style="font-weight: 400;">. Britty Baby, Ramandeep Singh, Rajdeep Singh, Ashish Suri, Chetan Arora, Subodh Kumar, Prem Kumar Kalra, Subhashis Banerjee.  World Neurosurgery, 137:398-407, May 2020.</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">A review of virtual reality simulators for neuroendoscopy</span></i><span style="font-weight: 400;">. Britty Baby, Ramandeep Singh, Ashish Suri, Rohan Raju Dhanakshirur, Argha Chakraborty, Subodh Kumar, Prem Kumar Kalra, Subhashis Banerjee.  Neurosurgical Review, Volume 43, pages 1255-1272, 2020.</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Batch based Monocular SLAM for Egocentric Videos. </span></i><span style="font-weight: 400;">Suvam Patra, Kartikeya Gupta, Faran Ahmad, Chetan Arora, Subhashis Banerjee.  IEEE Winter Conference on Applications of Computer Vision (WACV), March 2019. (<a href="https://arxiv.org/abs/1707.05564">https://arxiv.org/abs/1707.05564</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">A Joint 3D-2D based method for free space detection on roads</span></i><span style="font-weight: 400;">. Suvam Patra, Pranjal Maheshwari, Shashank Yadav, Chetan Arora, Subhashis Banerjee.  IEEE Winter Conference on Applications of Computer Vision (WACV), March 2018. (</span><a href="https://web.archive.org/web/20221205044846/https://arxiv.org/abs/1711.02144"><span style="font-weight: 400;">https://arxiv.org/abs/1711.02144</span></a><span style="font-weight: 400;">,)</span></li>
-<li style="font-weight: 400;"><a href="https://arxiv.org/abs/1712.02282"><i><span style="font-weight: 400;">On monitoring development indicators using high resolution satellite images</span></i></a><span style="font-weight: 400;">. Potnuru Kishen Suraj, Ankesh Gupta, Makkunda Sharma, Sourabh Bikas Paul, Subhashis Banerjee, December 2017. ()</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://ieeexplore.ieee.org/document/8296348">Deep CNN with Color Lines model for unmarked road segmentation</a>. </span></i><span style="font-weight: 400;">Shashank Yadav, Suvam Patra, Chetan Arora, Subhashis Banerjee.  IEEE International Conference on Image Processing (ICIP 2017), Beijing, September 2017 (<a href="https://ieeexplore.ieee.org/document/8296348">ieeexplore.ieee.org/document/8296348</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;">Divide and Conquer: A Hierarchical Approach to Large-scale Structure-from-Motion</span></i><span style="font-weight: 400;">. Brojeshwar Bhowmick, Suvam Patra, Avishek Chatterjee, Venu Madhav Govindu, Subhashis Banerjee. Computer Vision and Image Understanding (CVIU), April 2017. (<a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346">https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346</a>)</span></li>
-<li style="font-weight: 400;"><i><span style="font-weight: 400;"><a href="https://www.computer.org/csdl/proceedings-article/wacv/2017/07926640/12OmNviHKiX">Computing Egomotion with Local Loop Closures for Egocentric Videos</a>. Suvam Patra, Himanshu Aggarwal, Himani Arora, Chetan Arora, Subhashis Banerjee. IEEE Winter Conference on Applications of Computer Vision (WACV), March 2017 </span></i></li>
-</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+                <hr style="border:none;margin:1.5rem 0" />
+                
+                <section class="card" aria-labelledby="research-heading">
+                    <a name="research"></a>
+                    <h2 id="research-heading">Recent Research</h2>
+                    <div class="tags" aria-label="Research Areas">
+                        <span class="tag"><a href="#privacy">Privacy and security</a></span>
+                        <span class="tag"><a href="#voting">Electronic voting</a></span>
+                        <span class="tag"><a href="#radiology">Computational radiology</a></span>
+                        <span class="tag"><a href="#vision">Computer vision & ML</a></span>
+                    </div>
 
-<!---
-          <div class="linklist" style="margin-top:10px">
-            <a class="pill" href="#publications" aria-label="Jump to publications">View publications</a>
-            <a class="pill" href="#teaching" aria-label="Jump to teaching">Teaching</a>
-          </div>
---->
-        </section>
+                    <div class="research-area">
+                        <a name="privacy"></a>
+                        <h4>Privacy and Security in Large Public Service Applications</h4>
+                        <p>Governments around the world – and India in particular – are trying to build large data registries for effective delivery of a variety of public services. However, these efforts are often undermined due to serious concerns over privacy risks associated with collection and processing of personally identifiable information. While a rich set of special- purpose privacy-preserving techniques exist in computer science, they are unable to provide end-to-end protection in alignment with legal principles in the absence of an overarching operational architecture to ensure purpose limitation and protection against insider attacks. This either leads to weak privacy protection in large designs, or adoption of overly defensive strategies to protect privacy by compromising on utility.</p>
+<p>We investigate the issues in designing an operational architecture for privacy-by-design based on independent regulatory oversight stipulated by most data protection regimes, regulated access control, purpose limitation and data minimisation.<p>
+                        <ul>
+                            <li><i>Traceable mixnets</i>. Prashant Agrawal, Abhinav Nakarmi, Mahavir Prasad Jhawar, Subodh Sharma, Subhashis Banerjee. Privacy Enhancing Technology Symposium (PoPETs/PETS), July 2024. (<a href="https://arxiv.org/abs/2305.08138">arXiv:2305.08138</a>).</li>
+                            <li><i>On health data architecture design</i>. Prashant Agrawal, Subodh Sharma, Ambuj Sagar, Subhashis Banerjee. Book chapter in Private and controversial: When public health and privacy meet in India. Harper Collins. January, 2023. (<a href="https://www.cse.iitd.ac.in/~suban/reports/ndhm2.pdf">PDF</a>)</li>
+<li><i>Elements of an accountability-based framework for privacy protection.</i> Prashant Agrawal, Anubhutie Singh, Malavika Raghavan, Subodh Sharma, Subhashis Banerjee. 2021. (working paper) </li>
+<li><i>An operational architecture for privacy-by-design in large public service applications</i>. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee.  2020 (working paper)</li>
+                            <li><i>Privacy concerns with Aadhaar</i>. Subhashis Banerjee, Subodh Sharma. Commun. ACM 62(11): 80, 2019. </li>
+                            <li><i>Privacy and Security of Aadhaar: A Computer Science Perspective</i>. Shweta Agrawal, Subhashis Banerjee and Subodh Sharma. Economic and Political Weekly, September 2017. </li>
+                        </ul>
+                    </div>
 
-        <section class="section" aria-labelledby="teaching" id="teaching">
-          <a name="courses"><h2>Current course(s)</h2></a>
-          <ul>
-<li><span style="font-weight: 400;">Quantitative Reasoning and Mathematical Thinking (QRMT) <a class="pill" href="Courses/QRMT_Monsoon2025/" target=_blank aria-label="QRMT">Course page</a></span></li>
-<li><span style="font-weight: 400;">Information Security <a class="pill" href="Courses/InfoSec_Monsoon2025/" target=_blank aria-label="InfoSec">Course page</a></span></li>
-          </ul>
-	<p>
-          <h2>Courses taught</h2>
-          <ul>
-<li><span style="font-weight: 400;">Introduction to Computer Science</span></li>
-<li><span style="font-weight: 400;">Quantitative Reasoning and Mathematical Thinking</span></li>
-<li><span style="font-weight: 400;">Discrete Structures</span></li>
-<li><span style="font-weight: 400;">Data Structures</span></li>
-<li><span style="font-weight: 400;">Numerical Algorithms</span></li>
-<li><span style="font-weight: 400;">Design Practices in CS</span></li>
-<li><span style="font-weight: 400;">Operating Systems</span></li>
-<li><span style="font-weight: 400;">Design and Analysis of Algorithms</span></li>
-<li><span style="font-weight: 400;">Theory of Computation</span></li>
-<li><span style="font-weight: 400;">Mathematical Foundations of Computer Science</span></li>
-<li><span style="font-weight: 400;">Logic and Functional Programming</span></li>
-<li><span style="font-weight: 400;">Quantum Computation and Information</span></li>
-<li><span style="font-weight: 400;">Computer Graphics</span></li>
-<li><span style="font-weight: 400;">Digital Image Analysis</span></li>
-<li><span style="font-weight: 400;">Pattern Recognition</span></li>
-<li><span style="font-weight: 400;">Machine Learning</span></li>
-<li><span style="font-weight: 400;">Computer Vision</span></li>
-<li><span style="font-weight: 400;">Neural Networks and Deep Learning</span></li>
-<li><span style="font-weight: 400;">Simultaneous Localization and Mapping</span></li>
-<li><span style="font-weight: 400;">Identity, Data and Privacy</span></li>
-<li><span style="font-weight: 400;">Fairness and Reliability of Machine Learning</span></li>
-          </ul>
-        </section>
+                    <div class="research-area">
+                        <a name="voting"></a>
+                        <h4>Electronic Voting</h4>
+                        <p>India’s parliamentary election is the largest in the world, with 543 constituencies and well over 1 million voters per constituency on the average, and voting is conducted electronically since 2004. However, there is considerable doubt about the integrity of both the Electronic Voting Machine (EVM) used by the Election Commission of India (ECI) and the procedure for maintaining and updating voters lists.</p>
+<p>We analyse the ECI solutions from the points of view of verifiability and compliance with democratic principles. We also investigate a) the possibility of end-to-end verifiable electronic voting that can support voter-verified paper audit trails in a closely coupled manner, and b) the issues with security, integrity and privacy of electoral rolls.</p>
+                        <ul>
+                            <li><i>Publicly auditable privacy-preserving electoral rolls.</i> Prashant Agrawal, Mahabir Prasad Jhanwar, Subodh Sharma, Subhashis Banerjee. IEEE Computer Security Foundations. July, 2024. (<a href="https://arxiv.org/abs/2402.11582">arXiv:2402.11582</a>)</li>
+                            <li><i>OpenVoting: Recoverability from failures in dual voting</i>. Prashant Agrawal, Kabir Tomer, Abhinav Nakarmi, Mahabir Prasad Jhanwar, Subodh Sharma, Subhashis Banerjee. E- Vote-ID, October 2023. (<a href="https://arxiv.org/abs/1908.09557">arXiv:1908.09557</a>).</li>
+                            <li><i>Citizens’ Commission on Elections’ Report on EVMs and VVPAT. </i>Madan Lokur et al. Economic and Political Weekly, Vol. 57, Issue No. 3, 15 Jan, 2022. (<a href="https://www.epw.in/journal/2022/3/perspectives/citizens%E2%80%99-commission-elections%E2%80%99-report-evms-and.html">Article Link</a>)</li>
+                            <li><i>Blockchain vs public bulletin boards for integrity of elections and electoral rolls</i>. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee.  The India Forum, August, 2021. (<a href="https://www.theindiaforum.in/article/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls">theindiaforum.in/…/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls</a>)</li>
+                        </ul>
+                    </div>
 
-        <section class="section" aria-labelledby="media">
-          <a name="opeds"><h2 id="media">Commentaries</h2></a>
-          <ul  class="commentary-list">
+                    <div class="research-area">
+                        <a name="radiology"></a>
+                        <h4>Computational Radiology</h4>
+                        <p>In collaboration with the radiology group at AIIMS, New Delhi, we investigate improved detection of breast cancer from mammograms in situations where the presentation is obscure and difficult. We also investigate using other auxiliary information to improve the accuracy of detection.</p>
+                        <p>In a one-off problem, we also addressed detection of Covid from chest X-Ray in a hospital setting.</p>
+                        <ul>
+                            <li><i>Simulation training in mammography with AI-generated images: a multireader study</i>. Krithika Rangarajan, Veeramakali Vignesh Manivannan, Harpinder Singh, Amit Gupta, Hrithik Maheshwari, Rishparn Gogoi, Debashish Gogoi, Rupam Jyoti Das, Smriti Hari, Surabhi Vyas, Raju Sharma, Shivam Pandey, V. Seenu, Subhashis Banerjee, Vinay Namboodiri and Chetan Arora. European Radiology. August 2024. (<a href="https://doi.org/10.1007/s00330-024-11005-x">DOI Link</a>)</li>
+                           <li><i>Reproducibility and Explainability of Deep Learning in Mammography: A Systematic Review of Literature</i>. Deeksha Bhalla, Krithika Rangarajan, Tany Chandra,  Subhashis Banerjee, Chetan Arora. The Indian Journal of Radiology and Imaging. October 2023. (<a href="http://dx.doi.org/10.1055/s-0043-1775737">10.1055/s-0043-1775737</a>)</li>
 
-<li><i></i><em><a href="https://www.cse.iitd.ac.in/~suban/reports/trustdeficit.pdf">Trust deficit in Artificial Intelligence.</a></em> Subhashis Banerjee. July 12, 2025. <a href="https://www.news18.com/opinion/opinion-the-trust-deficit-in-artificial-intelligence-ws-dl-9443857.html">in News18.com</a>,  July 16, 2025. <a class="pill" href="https://www.news18.com/opinion/opinion-the-trust-deficit-in-artificial-intelligence-ws-dl-9443857.html" target=_blank aria-label="Link">Article</a></span></li></li>
-<li><i></i><em>Use of AI in healthcare.</em> Subhashis Banerjee.  <a href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t">TheCCGTech Podcast with Jhalak Kakkar and Fawaz Shaheen</a>,  July 3, 2025. <a class="pill" href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t" target=_blank aria-label="Link">Podcast</a></li>
-<li><i></i><em><a href="https://www.cse.iitd.ac.in/~suban/reports/GenAI.pdf">When Machines Imagine: The Promise and the Risk.</a></em> Subhashis Banerjee. June 12, 2025. <a href="https://www.theindiaforum.in/society/when-machines-imagine-promise-and-risk">in The India Forum</a>,  June 19, 2025. <a class="pill" href="https://www.theindiaforum.in/society/when-machines-imagine-promise-and-risk" target=_blank aria-label="Link">Article</a></li>
-<li><i></i><em>Can you hack an Indian EVM?</em> Subhashis Banerjee.  <a href="https://youtu.be/c0_wuplXS5Y?si=EdOjP2XeEJHUWvJ2">Podcast with The Coffee House Experience (Bengali)</a>,  February 21, 2025. <a class="pill" href="https://youtu.be/c0_wuplXS5Y?si=EdOjP2XeEJHUWvJ2" target=_blank aria-label="Link">Podcast</a></li>
+                            <li><i>Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts</i>. Krithika Rangarajan, P Aggarwal, D K Gupta, Rohan Dhanakshirur, Akhil Baby, Chandan Paul, A K Gupta, Smriti Hari, Subhashis Banerjee, Chetan Arora. European Radiology. June 2023. (<a href="https://doi.org/10.1007/s00330-023-09717-7">DOI Link</a>)</li>
+
+                            <li><i>Building and evaluating an artificial intelligence algorithm: A practical guide for practicing oncologists</i>. Anupama Ramachandran, Deeksha Bhalla, Krithika Rangarajan, Raja Pramanik, Subhashis Banerjee, Chetan Arora. Artif Intell Cancer. Jul 28, 2022; 3(3): 42-53.  (<a href="https://doi.org/10.35713/aic.v3.i3.42">https://doi.org/10.35713/aic.v3.i3.42</a>)</li>
+
+                            <li><i>Ultra-high resolution, multi-scale, context-aware approach for small cancers on Mammography</i>. Krithika Rangarajan, Aman Gupta, Saptarshi Dasgupta, Uday Marri, Arun Kumar Gupta, Smriti Hari, Subhashis Banerjee, Chetan Arora. Scientific Reports 12, 11622 (2022). (<a href="https://doi.org/10.1038/s41598-022-15259-7">DOI Link</a>)</li>
+
+			    <li><i>Basic principles of AI simplified for a Medical Practitioner: Pearls and Pitfalls in Evaluating AI algorithms</i>. Deeksha Bhalla, Anupama Ramachandran, Krithika Rangarajan, Rohan Dhanakshirur, Subhashis Banerjee, Chetan Arora. Current Problems in Diagnostic Radiology, 2022. ISSN 0363-0188. (<a href="https://doi.org/10.1067/j.cpradiol.2022.04.003">https://doi.org/10.1067/j.cpradiol.2022.04.003</a>)</li>
+
+                            <li><i>Artificial Intelligence-Assisted Chest X-Ray Assessment Scheme for COVID-19.</i> Krithika Rangarajan, Sumanyu Muku, Amit Kumar Garg, Pavan Gabra, Sujay Halkur Shankar, Neeraj Nischal, Kapil Dev Dev Soni, Ashu Seith Bhalla Seith Bhalla, Anant Mohan, Pawan Tiwari, Sushma Bhatnagar, Raghav Bansal, Atin Kumar, Shivanand Gamanagati, Richa Aggarwal, Upendra Baitha, Ashutosh Biswas, Arvind Kumar, Pankaj Jorwal, . Shalimar, A Shariff, Naveet Wig, Rajeshwari Subramanium, Anjan Trikha, Rajesh Malhotra, Randeep Guleria, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. European Radiology. January 2021. (<a href="https://pubmed.ncbi.nlm.nih.gov/33471219/">pubmed.ncbi.nlm.nih.gov/33471219</a>)</li>
+
+                            <li><i>Simulation Training for Diagnostic Radiology: Use of GAN Generated Images for Resident Training in Mammography</i>. Sneha Goswami, Ambikapathi P, Suransh Chopra, Vishwas Lathi, Krithika Rangarajan, Surabhi Vyas, Smriti Hari, Arun Gupta, Vinay Namboodiri, Subhashis Banerjee, Chetan Arora. RSNA 2020.</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <a name="vision"></a>
+                        <h4>Computer Vision and Machine Learning</h4>
+                        <p>We do a variety of applications of computer vision and machine learning spanning neurosurgery, satellite imaging, 3D reconstruction, SLAM, etc.</p>
+                        <ul>
+<li><i>Using satellites and artificial intelligence to measure health and material-living standards in India.</i>  Adel Daoud, Felipe Jordan, Makkunda Sharma, Sourabh Bikash Paul, Fredrik Johansson, Devdatt Dubhashi, Subhashis Banerjee.. Social Indicators Research. April 29, 2023. (<a href="https://doi.org/10.1007/s11205-023-03112-x">https://doi.org/10.1007/s11205-023-03112-x</a>)</li>
+
+<li><i>From Forks to Forceps: A New Framework for Instance Segmentation of Surgical Instruments</i>. Britty Baby, Daksh Thapar, Mustafa Chasmai, Tamajit Banerjee, Kunal Dargan, Ashish Suri, Subhashis Banerjee, Chetan Arora. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2023.  (<a href="https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM">https://www.computer.org/csdl/proceedings-article/wacv/2023/934600g180/1KxUiPGe7eM</a>)</li>
+<li><i>REGroup: Rank-aggregating Ensemble of Generative Classifiers for Robust Predictions. </i>Lokender Tiwari, Anish Madan, Saket Anand, Subhashis Banerjee.  IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2022. (<a href="https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf">https://openaccess.thecvf.com/content/WACV2022/papers/Tiwari_REGroup_Rank-Aggregating_Ensemble_of_Generative_Classifiers_for_Robust_Predictions_WACV_2022_paper.pdf</a>)</li>
+<li><i>Representation Learning using Rank Loss for Robust Neurosurgical Skills Evaluation</i>. Britty Baby, Mustafa Chasmai, Tamajit Banerjee, Ashish Suri, Subhashis Banerjee, Chetan Arora. International Conference on Image Processing (ICIP), October 2022. (<a href="https://ieeexplore.ieee.org/document/9897932">https://ieeexplore.ieee.org/document/9897932</a>)</li>
+<li><i>A Review of Physical Simulators for Neuroendoscopy Skills Training</i>. Britty Baby, Ramandeep Singh, Rajdeep Singh, Ashish Suri, Chetan Arora, Subodh Kumar, Prem Kumar Kalra, Subhashis Banerjee.  World Neurosurgery, 137:398-407, May 2020.</li>
+<li><i>A review of virtual reality simulators for neuroendoscopy</i>. Britty Baby, Ramandeep Singh, Ashish Suri, Rohan Raju Dhanakshirur, Argha Chakraborty, Subodh Kumar, Prem Kumar Kalra, Subhashis Banerjee.  Neurosurgical Review, Volume 43, pages 1255-1272, 2020.</li>
+<li><i>Batch based Monocular SLAM for Egocentric Videos. </i>Suvam Patra, Kartikeya Gupta, Faran Ahmad, Chetan Arora, Subhashis Banerjee.  IEEE Winter Conference on Applications of Computer Vision (WACV), March 2019. (<a href="https://arxiv.org/abs/1707.05564">https://arxiv.org/abs/1707.05564</a>)</li>
+<li><i>A Joint 3D-2D based method for free space detection on roads</i>. Suvam Patra, Pranjal Maheshwari, Shashank Yadav, Chetan Arora, Subhashis Banerjee.  IEEE Winter Conference on Applications of Computer Vision (WACV), March 2018. (<a href="https://web.archive.org/web/20221205044846/https://arxiv.org/abs/1711.02144">https://arxiv.org/abs/1711.02144</a>,)</li>
+<li><a href="https://arxiv.org/abs/1712.02282"><i>On monitoring development indicators using high resolution satellite images</i></a>. Potnuru Kishen Suraj, Ankesh Gupta, Makkunda Sharma, Sourabh Bikas Paul, Subhashis Banerjee, December 2017. ()</li>
+<li><i><a href="https://ieeexplore.ieee.org/document/8296348">Deep CNN with Color Lines model for unmarked road segmentation</a>. </i>Shashank Yadav, Suvam Patra, Chetan Arora, Subhashis Banerjee.  IEEE International Conference on Image Processing (ICIP 2017), Beijing, September 2017 (<a href="https://ieeexplore.ieee.org/document/8296348">ieeexplore.ieee.org/document/8296348</a>)</li>
+<li><i>Divide and Conquer: A Hierarchical Approach to Large-scale Structure-from-Motion</i>. Brojeshwar Bhowmick, Suvam Patra, Avishek Chatterjee, Venu Madhav Govindu, Subhashis Banerjee. Computer Vision and Image Understanding (CVIU), April 2017. (<a href="https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346">https://www.sciencedirect.com/science/article/abs/pii/S1077314217300346</a>)</li>
+<li><i><a href="https://www.computer.org/csdl/proceedings-article/wacv/2017/07926640/12OmNviHKiX">Computing Egomotion with Local Loop Closures for Egocentric Videos</a>. Suvam Patra, Himanshu Aggarwal, Himani Arora, Chetan Arora, Subhashis Banerjee. IEEE Winter Conference on Applications of Computer Vision (WACV), March 2017 </i></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <hr style="border:none;margin:1.5rem 0" />
+                
+                <section class="card" aria-labelledby="teaching-heading">
+                    <a name="courses"></a>
+                    <h2 id="teaching-heading">Courses</h2>
+                    
+                    <h3>Current Course(s)</h3>
+                    <ul class="list-unstyled">
+                        <li>Quantitative Reasoning and Mathematical Thinking (QRMT) <a class="pill" href="Courses/QRMT_Monsoon2025/" target="_blank" aria-label="QRMT Course page">Course page</a></li>
+                        <li>Information Security <a class="pill" href="Courses/InfoSec_Monsoon2025/" target="_blank" aria-label="InfoSec Course page">Course page</a></li>
+                    </ul>
+                    
+                    <h3>Courses Taught</h3>
+                    <ul style="column-count: 2; column-gap: 20px;">
+                        <li>Introduction to Computer Science</li>
+                        <li>Quantitative Reasoning and Mathematical Thinking</li>
+                        <li>Discrete Structures</li>
+                        <li>Data Structures</li>
+                        <li>Numerical Algorithms</li>
+                        <li>Design Practices in CS</li>
+                        <li>Operating Systems</li>
+                        <li>Design and Analysis of Algorithms</li>
+                        <li>Theory of Computation</li>
+                        <li>Mathematical Foundations of Computer Science</li>
+                        <li>Logic and Functional Programming</li>
+                        <li>Quantum Computation and Information</li>
+                        <li>Computer Graphics</li>
+                        <li>Digital Image Analysis</li>
+                        <li>Pattern Recognition</li>
+                        <li>Machine Learning</li>
+                        <li>Computer Vision</li>
+                        <li>Neural Networks and Deep Learning</li>
+                        <li>Simultaneous Localization and Mapping</li>
+                        <li>Identity, Data and Privacy</li>
+                        <li>Fairness and Reliability of Machine Learning</li>
+                    </ul>
+                </section>
+
+                <hr style="border:none;margin:1.5rem 0" />
+
+                <section class="card" aria-labelledby="commentaries-heading">
+                    <a name="commentaries"></a>
+                    <h2 id="commentaries-heading">Commentaries</h2>
+                    <ul class="commentary-list">
+
+<li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/trustdeficit.pdf">Trust deficit in Artificial Intelligence.</a></i> Subhashis Banerjee. July 12, 2025. <a href="https://www.news18.com/opinion/opinion-the-trust-deficit-in-artificial-intelligence-ws-dl-9443857.html">in News18.com</a>,  July 16, 2025. <a class="pill" href="https://www.news18.com/opinion/opinion-the-trust-deficit-in-artificial-intelligence-ws-dl-9443857.html" target=_blank aria-label="Link">Article</a></span></li></li>
+<li><i>Use of AI in healthcare.</i> Subhashis Banerjee.  <a href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t">TheCCGTech Podcast with Jhalak Kakkar and Fawaz Shaheen</a>,  July 3, 2025. <a class="pill" href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t" target=_blank aria-label="Link">Podcast</a></li>
+<li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/GenAI.pdf">When Machines Imagine: The Promise and the Risk.</a></i> Subhashis Banerjee. June 12, 2025. <a href="https://www.theindiaforum.in/society/when-machines-imagine-promise-and-risk">in The India Forum</a>,  June 19, 2025. <a class="pill" href="https://www.theindiaforum.in/society/when-machines-imagine-promise-and-risk" target=_blank aria-label="Link">Article</a></li>
+<li><i>Can you hack an Indian EVM?</i> Subhashis Banerjee.  <a href="https://youtu.be/c0_wuplXS5Y?si=EdOjP2XeEJHUWvJ2">Podcast with The Coffee House Experience (Bengali)</a>,  February 21, 2025. <a class="pill" href="https://youtu.be/c0_wuplXS5Y?si=EdOjP2XeEJHUWvJ2" target=_blank aria-label="Link">Podcast</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/EVM.pdf">On EVMs and VVPAT</a></i>. Subhashis Banerjee. November 29, 2024. <a class="pill" href="https://www.cse.iitd.ac.in/~suban/reports/EVM.pdf" target=_blank aria-label="Link">Article</a></li>
-<li><i></i><em><a href="https://www.cse.iitd.ac.in/~suban/reports/AGI.pdf">Can machines think?</a></em> Subhashis Banerjee. March 29, 2024. <a href="https://www.thehindu.com/sci-tech/technology/if-there-is-a-theory-of-ai-computer-science-is-unlikely-to-provide-it/article68049815.ece">in The Hindu</a>,  April 11, 2024. <a class="pill" href="https://www.thehindu.com/sci-tech/technology/if-there-is-a-theory-of-ai-computer-science-is-unlikely-to-provide-it/article68049815.ece" target=_blank aria-label="Link">Article</a></li>
-<li><em><a href="https://www.cse.iitd.ac.in/~suban/reports/evm2.pdf">Trust and the machine: the nuances of electronic voting</a></em>. Subhashis Banerjee. November 15, 2023. <a href="https://indianexpress.com/article/opinion/columns/evms-are-reliable-but-the-election-commission-must-prove-that-9049277/">in The Indian Express</a>. December 1, 2023. <a class="pill" href="https://indianexpress.com/article/opinion/columns/evms-are-reliable-but-the-election-commission-must-prove-that-9049277/" target=_blank aria-label="Link">Article</a></li>
+<li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/AGI.pdf">Can machines think?</a></i> Subhashis Banerjee. March 29, 2024. <a href="https://www.thehindu.com/sci-tech/technology/if-there-is-a-theory-of-ai-computer-science-is-unlikely-to-provide-it/article68049815.ece">in The Hindu</a>,  April 11, 2024. <a class="pill" href="https://www.thehindu.com/sci-tech/technology/if-there-is-a-theory-of-ai-computer-science-is-unlikely-to-provide-it/article68049815.ece" target=_blank aria-label="Link">Article</a></li>
+<li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/evm2.pdf">Trust and the machine: the nuances of electronic voting</a></i>. Subhashis Banerjee. November 15, 2023. <a href="https://indianexpress.com/article/opinion/columns/evms-are-reliable-but-the-election-commission-must-prove-that-9049277/">in The Indian Express</a>. December 1, 2023. <a class="pill" href="https://indianexpress.com/article/opinion/columns/evms-are-reliable-but-the-election-commission-must-prove-that-9049277/" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/dp-bill2.pdf">Gaps in data protection</a></i>. Subhashis Banerjee. July 9, 2023. <a href="https://indianexpress.com/article/opinion/columns/hiding-behind-consent-8834780/">in The Indian Express</a>. July 14, 2023. <a class="pill" href="https://indianexpress.com/article/opinion/columns/hiding-behind-consent-8834780/" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/dataleak.pdf">Missing rigour and due diligence</a></i>. Subhashis Banerjee. June 18, 2023. <a href="https://indianexpress.com/article/opinion/columns/cowin-declaring-that-personal-data-is-secure-isnt-enough-privacy-guarantees-need-more-8671516/">in The Indian Express</a>. June 19, 2023. <a class="pill" href="https://indianexpress.com/article/opinion/columns/cowin-declaring-that-personal-data-is-secure-isnt-enough-privacy-guarantees-need-more-8671516/" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/chatgpt2.pdf">The conundrum of ChatGPT</a></i>. Subhashis Banerjee. March 16, 2023. <a href="https://www.thehindubusinessline.com/opinion/chatgpt-a-double-edged-weapon/article66721522.ece">in The Hindu Businessline</a>. April 10, 2023. <a class="pill" href="https://www.thehindubusinessline.com/opinion/chatgpt-a-double-edged-weapon/article66721522.ece" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.theindiaforum.in/technology/interview-chatgpt-my-strengths-and-my-limits">ChatGPT Interviewed: &#8216;My Strengths and My Limits&#8217;</a></i>. Subhashis Banerjee. February 2023. <a href="https://www.theindiaforum.in/technology/interview-chatgpt-my-strengths-and-my-limits">in The India Forum</a>, February 14, 2023. <a class="pill" href="https://www.theindiaforum.in/technology/interview-chatgpt-my-strengths-and-my-limits" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/RV.pdf">Barking up the wrong tree</a></i>. Subhashis Banerjee. January 8, 2023. <a href="https://www.thehindu.com/opinion/op-ed/barking-up-the-wrong-tree/article66362355.ece">in The Hindu</a>, January 11, 2023. <a class="pill" href="https://www.thehindu.com/opinion/op-ed/barking-up-the-wrong-tree/article66362355.ece" target=_blank aria-label="Link">Article</a></li>
-<li><i></i><em>Pegasus and Privacy</em> Subhashis Banerjee.  <a href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t">Vidhi Centre of Legal Policie's podcast with Arghya Sengupta</a>,  May 25, 2022. <a class="pill" href="https://vidhilegalpolicy.in/podcasts/justify-season-3/pegasus-and-privacy-justify-season-3-episode-9/" target=_blank aria-label="Link">Podcast</a></li>
-<li><i></i><em>Cryptocurrencies, Decentralized Finance, and Trust.</em> Fireside chat of Subodh Sharma and Subhashis Banerjee with Brian Armstrong, CEO of Coinbase.  <a href="https://youtu.be/YhDxPPG6Aj4?si=x386tb33WO0cIWTZ">IIT Delhi podcast</a>,  April 22, 2022. <a class="pill" href="https://youtu.be/YhDxPPG6Aj4?si=x386tb33WO0cIWTZ" target=_blank aria-label="Link">Podcast</a></li>
+<li><i>Pegasus and Privacy</i> Subhashis Banerjee.  <a href="https://open.spotify.com/episode/4mmko7vlIkBpyLin25vJ5t">Vidhi Centre of Legal Policie's podcast with Arghya Sengupta</a>,  May 25, 2022. <a class="pill" href="https://vidhilegalpolicy.in/podcasts/justify-season-3/pegasus-and-privacy-justify-season-3-episode-9/" target=_blank aria-label="Link">Podcast</a></li>
+<li><i>Cryptocurrencies, Decentralized Finance, and Trust.</i> Fireside chat of Subodh Sharma and Subhashis Banerjee with Brian Armstrong, CEO of Coinbase.  <a href="https://youtu.be/YhDxPPG6Aj4?si=x386tb33WO0cIWTZ">IIT Delhi podcast</a>,  April 22, 2022. <a class="pill" href="https://youtu.be/YhDxPPG6Aj4?si=x386tb33WO0cIWTZ" target=_blank aria-label="Link">Podcast</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/BC.pdf">Blockchain and prudence</a></i>. Subhashis Banerjee and Subodh Sharma. February 2022. <a href="https://indianexpress.com/article/opinion/columns/cryptocurrency-beyond-hype-blockchain-look-at-reality-7780487/">in The Indian Express</a> February 25, 2022. <a class="pill" href="https://indianexpress.com/article/opinion/columns/cryptocurrency-beyond-hype-blockchain-look-at-reality-7780487/" target=_blank aria-label="Link">Article</a></li>
 <li><i>Aadhaar-Voter ID Linkage Could Sink Indian Democracy</i>. M G Devasahayam, Subhashis Banerjee and Jagdeep Chhokar. Book chapter in <i>Electoral Democracy? An enquiry into the Fairness and Integrity of Elections in India</i> edited by M G Devasahayam, published by Paranjoy. February, 2022. </li>
-<li><i></i><em>Linking of Aadhar and Voter Identities Is Dangerous for Democracy.</em> Subhashis Banerjee.  <a href="https://youtu.be/TZregsOOP68?si=QieVcHWHGfVn0GGF">NewsClick podcast with Paranjoy Guha Thakurta and Prabir Purakayastha</a>,  December 31, 2025. <a class="pill" href="https://youtu.be/TZregsOOP68?si=QieVcHWHGfVn0GGF" target=_blank aria-label="Link">Podcast</a></li>
-<li><i></i><em>Nuances of Electronic Voting.</em> Subhashis Banerjee.  <a href="https://youtu.be/S7NkYr90wqg?si=lO442RNQWgCn4vOk">HasGeek podcast with Smary McCarthy</a>,  December 15, 2021. <a class="pill" href="https://youtu.be/S7NkYr90wqg?si=lO442RNQWgCn4vOk" target=_blank aria-label="Link">Podcast</a></li>
+<li><i>Linking of Aadhar and Voter Identities Is Dangerous for Democracy.</i> Subhashis Banerjee.  <a href="https://youtu.be/TZregsOOP68?si=QieVcHWHGfVn0GGF">NewsClick podcast with Paranjoy Guha Thakurta and Prabir Purakayastha</a>,  December 31, 2025. <a class="pill" href="https://youtu.be/TZregsOOP68?si=QieVcHWHGfVn0GGF" target=_blank aria-label="Link">Podcast</a></li>
+<li><i>Nuances of Electronic Voting.</i> Subhashis Banerjee.  <a href="https://youtu.be/S7NkYr90wqg?si=lO442RNQWgCn4vOk">HasGeek podcast with Smary McCarthy</a>,  December 15, 2021. <a class="pill" href="https://youtu.be/S7NkYr90wqg?si=lO442RNQWgCn4vOk" target=_blank aria-label="Link">Podcast</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/ER-bill.pdf">Election Laws (Amendment) Bill, 2021: a bill passed in haste</a></i>. Subhashis Banerjee and Subodh Sharma. December 2021. <a href="https://indianexpress.com/article/opinion/columns/aadhaar-electoral-reform-bill-marginalised-7686036/">in The Indian Express</a>, December 23, 2021. <a class="pill" href="https://indianexpress.com/article/opinion/columns/aadhaar-electoral-reform-bill-marginalised-7686036/" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/ndhm2.pdf">On health data infrastructure design</a></i>. Prashant Agrawal, Subodh Sharma, Ambuj Sagar and Subhashis Banerjee. October 2021. A shorter version appeared in <a href="https://indianexpress.com/article/opinion/columns/national-digital-health-mission-harsh-vardhan-healthcare-sector-7218715/">in The Indian Express</a>, on March 8, 2021. <a class="pill" href="https://indianexpress.com/article/opinion/columns/aadhaar-electoral-reform-bill-marginalised-7686036/" target=_blank aria-label="Link">Article</a></li>
 <li><i><a href="https://www.cse.iitd.ac.in/~suban/reports/bcvbb.pdf">Blockchain vs public bulletin board for integrity of elections and electoral rolls</a></i>. Prashant Agrawal, Subodh Sharma, Subhashis Banerjee. July 2021. <a href="https://www.theindiaforum.in/article/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls">in The India Forum</a>. July 30, 2021. <a class="pill" href="https://www.theindiaforum.in/article/blockchain-vs-public-bulletin-board-integrity-elections-and-electoral-rolls" target=_blank aria-label="Link">Article</a></li>
@@ -419,12 +427,14 @@ A <a href="https://www.cse.iitd.ac.in/~suban/reports/dp-short.pdf">summary</a> a
 A shorter version in the <a href="http://www.epw.in/journal/2017/37/special-articles/privacy-and-security-aadhaar.html">Economic and Political Weekly, September 2017</a>. <a class="pill" href="http://www.epw.in/journal/2017/37/special-articles/privacy-and-security-aadhaar.html" target=_blank aria-label="Link">Article</a><br />
 <a href="https://www.cse.iitd.ac.in/~suban/reports/thewire.pdf">A summary</a> appeared in the <a href="https://thewire.in/161363/mapping-threat-model-aadhaar-ecosystem/">in The Wire</a>, July 2017. <a class="pill" href="https://thewire.in/161363/mapping-threat-model-aadhaar-ecosystem/" target=_blank aria-label="Link">Article</a></li>
 <li><i>On Facebook&#8217;s Freebasics</i>. Subhashis Banerjee. Blog (<a href="http://www.cse.iitd.ac.in/~suban/reports/freebasics.pdf">PDF</a>), January 2016. <a class="pill" href="http://www.cse.iitd.ac.in/~suban/reports/freebasics.pdf" target=_blank aria-label="Link">Article</a></li>
+                        </ul>
+                </section>
+            </div>
+        </div>
 
-          </ul>
-        </section>
-      </div>
-    </div>
-
-  </main>
+    </main>
+    <footer class="footer" style="text-align:center; color:var(--muted); font-size:0.8rem; margin:2rem 0 1rem;">
+        &copy; 2025 Subhashis Banerjee | Designed for academic simplicity and mobile-friendliness.
+    </footer>
 </body>
 </html>
