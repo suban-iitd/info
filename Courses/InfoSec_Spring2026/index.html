@@ -1,0 +1,132 @@
+<Lecture-1.pdf>Lecture-1.pdf</a>, !doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Information Security</title>
+  <style>
+    :root{
+      --text:#111;
+      --muted:#555;
+      --accent:#2f6feb;
+      --bg:#fff;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    .page{max-width:900px;margin:48px auto;padding:0 20px 64px}
+    header{border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:28px}
+    h1{font-size:1.9rem;line-height:1.2;margin:0 0 6px}
+    .meta{color:var(--muted);font-size:0.95rem}
+    h2{font-size:1.25rem;margin:28px 0 10px}
+    h3{font-size:1.05rem;margin:22px 0 10px}
+    p{margin:10px 0}
+    ul,ol{margin:8px 0 16px 22px}
+    li{margin:6px 0}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 10px;margin-right:8px;font-size:0.85rem;color:var(--muted)}
+    .callout{border-left:4px solid var(--accent);background:#f6f9ff;padding:12px 14px;border-radius:6px;margin:14px 0}
+    .hours{color:var(--muted);font-size:0.9rem}
+    footer{border-top:1px solid var(--border);margin-top:40px;padding-top:14px;color:var(--muted);font-size:0.9rem}
+    @media print{
+      .page{margin:0;padding:0}
+      header,footer{border:none}
+      a{color:inherit;text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Information Security</h1>
+      <h2>CS-3610-1, Spring 2026</h2>
+      <div class="meta">Course being taught by <a href=https://www.ashoka.edu.in/profileaalok-thakkar/ target="_blank">Aalok Thakkar</a> and <a href=https://www.ashoka.edu.in/profile/subhashis-banerjee/ target="_blank">Subhashis Banerjee</a> at <a href=https://www.ashoka.edu.in target="_blank">Ashoka University</a></div>
+      <div></div><p><p>
+      <div class="tags">
+        <span class="tag"><a href="#LA">Learning outcome</a></span>
+        <span class="tag"><a href="#prereq">Pre-requisites</a></span>
+        <span class="tag"><a href="#coverage">Coverage</a></span>
+        <span class="tag"><a href="#books">Reading list</a></span>
+        <span class="tag"><a href="#honourcode">Honour code</a></span>
+        <span class="tag"><a href="#attendance">Attendance requirement</a></span>
+        <span class="tag"><a href="#evals">Evaluations</a></span>
+      </div>
+    </header>
+
+    <section>
+      <a name="LA"><h2>Learning outcome</h2></a>
+      <p>This course will help students understand and model information security in the modern world. It will help students reason concretely about real-world problems through case studies. This course will not cover design of security systems, but will cover requirement analysis methods and threat modelling. It will also familiarise students with commonly used security tools and measures in everyday life.</p>
+    </section>
+
+    <section>
+      <a name="prereq"><h2>Pre‑requisites</h2></a>
+      <p>Data Structures and Algorithms, Probability and Statistics</p>
+    </section>
+
+    <section>
+      <a name="coverage"><h2>Coverage </h2></a>
+      <ul>
+        <li>Introduction to security, trust vs verifiability (<a href=Lecture-1.pdf>Lecture-1.pdf</a>, <a href=Lecture-2.pdf>Lecture-2.pdf</a>) </li>
+        <li>Verification of security protocols, Dolev-Yao model (<a href=Lecture-3.pdf>Lecture-3.pdf</a>) </li>
+<!---
+        <li>Adversarial threat models</li>
+        <li>Notions of secrecy, privacy, and security</li>
+        <li>
+          Basics of cryptography – symmetric and public key encryption, authentication, hash functions, digital signatures, certificates, cryptographic protocols, and applications
+        </li>
+        <li>Cryptographic security definitions</li>
+        <li>Models of authentication and authorisation; biometrics; identity</li>
+        <li>
+          Issues with verification of hardware and software integrity; the frameworks of formal verification and model checking
+        </li>
+        <li>
+          Trust assumptions, distributing trust with secure multiparty computations, hardware trust models, trusted computing environments and remote attestation
+        </li>
+        <li>Elements of OS and Network security</li>
+-->
+      </ul>
+    </section>
+
+    <section>
+      <a name="books"><h2>Reading list</h2></a>
+      <ol>
+        <li>Matthew A. Bishop, <em>Computer Security: Art and Science</em>, 2nd Edition, Pearson, 2018</li>
+        <li>Bruce Schneier, <em>Applied Cryptography</em>, John Wiley &amp; Sons, 1996</li>
+        <li>William Stallings, <em>Cryptography and Network Security: Principles and Practice</em>, 8th Edition, Pearson, 2022</li>
+        <li>Ross Anderson, <em>Security Engineering: A Guide to Building Dependable Distributed Systems</em>, 3rd Edition, Wiley, 2020</li>
+        <li>Charlie Kaufman, Radia Perlman, and Mike Speciner, <em>Network Security: Private Communication in a Public World</em>, 3rd Edition, Pearson</li>
+      </ol>
+    </section>
+
+    <section>
+      <a name="honourcode"><h2>Honour code</h2></a>
+      <ul>
+        <li>All students are expected to follow a high ethical standard.
+        <li>Collaborations and discussions are encouraged. However, all students are required to write up all solutions and submitted work entirely on their own. Any collaboration, or help taken, must be declared. All submissions must include a <i>declaration of originality</i>.
+        <li>Students are encouraged to refer to books, papers, internet resources and tools like ChatGPT.  They may even consult other individuals. However, the source must be clearly cited if any part of the solution (or even an idea) is taken from such a source.
+        <li><b>Failure to declare any help taken will be interpreted as academic misconduct and result in a F grade in the course</b>.
+      </ul>
+    </section>
+
+    <section>
+      <a name="attendance"><h2>Attendance requirement</h2></a>
+      The course will require 100% attendance. It will be hard to catch up if there are too many missed classes. Class participation will count towards grading. <b>There will be no make-up provisions for missed quizzes and class participation, for whatever reason</b>. Best of <i>n-1</i> quizzes out of <i>n</i> will count toward the final grade. Make-up tests may be allowed for the midterm and final exams (only due to illness) on production of a medical certificate clearly stating that the student was not in a position to take the test. <b>A medical prescription will not be sufficient</b>.
+    </section>
+
+    <section>
+      <a name="evals"><h2>Evaluations</h2></a>
+      <ul>
+        <li>Quizzes: 20%
+        <li>Assignments and project: 30%
+        <li>Midterm examination: 25%
+        <li>Final examination: 25%
+      </ul>
+    </section>
+
+
+
+    <footer>
+      <p><a href=https://www.ashoka.edu.in/profileaalok-thakkar/ target="_blank">Aalok Thakkar</a> and <a href=https://www.ashoka.edu.in/profile/subhashis-banerjee/ target="_blank">Subhashis Banerjee</a></p>
+    </footer>
+  </main>
+</body>
+</html>
