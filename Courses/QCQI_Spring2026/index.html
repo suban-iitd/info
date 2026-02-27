@@ -52,6 +52,44 @@
       </div>
     </header>
 
+    <style>
+      .announcement-box {
+        float: right;
+        width: 260px;
+        background-color: #f5f7fa;
+        border-left: 4px solid #0d1b2a;
+        padding: 12px 16px;
+        margin: 10px 0 20px 20px;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      }
+
+      .announcement-box h3 {
+        margin-top: 0;
+        font-size: 16px;
+        color: #0d1b2a;
+      }
+
+      .announcement-box ul {
+        padding-left: 18px;
+        margin: 8px 0 0 0;
+      }
+
+      .announcement-box li {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+    </style>
+
+    <div class="announcement-box">
+      <h3>Announcements</h3>
+      <ul>
+        <li><strong>Midterm date TBD</strong></li>
+      </ul>
+    </div>
+
+
     <section>
       <a name="LA"><h2>Learning outcome</h2></a>
       <p>This course provides a rigorous introduction to quantum computation and quantum information theory, emphasizing algorithmic, complexity-theoretic, and cryptographic perspectives. Students will study quantum circuits, universal gate sets, and foundational quantum algorithms, including the quantum Fourier transform, phase estimation, and quantum search. The course explores the computational power of quantum algorithms through order finding, factoring, discrete logarithms, Grover’s algorithm, random walks and Hamiltonians, and linear algebraic algorithms complemented by hands-on implementation using Qiskit. A formal introduction to quantum complexity theory is included, focusing on the class BQP and its relationship to classical complexity classes such as P, NP, and PSPACE. The course further develops classical and quantum information-theoretic foundations, covering entropy, source coding, and fundamental limits on information processing, and extends these concepts to the quantum setting through von Neumann entropy, the Holevo bound, Schumacher compression, and coherent information. Building on these principles, the course examines quantum cryptographic protocols, including quantum key distribution (a most remarkable application of quantum information) and quantum secret sharing, highlighting information-theoretic security in the presence of quantum adversaries.</p>
@@ -70,7 +108,12 @@
 	<li>Basics of quantum computation (<a href=basics.pdf>Lecture 6</a>)</li>
 	<li>Deutsch-Josza and Simon's algorithms (<a href=basic-algos.pdf>Lecture 7</a>)</li>
 	<li>Everett (many-world) model (<a href=multiverse.pdf>Lecture 8</a>)</li>
-	<li>Basics of computing(<a href=computation.pdf>Lecture 8</a>)</li>
+	<li>Basics of computing (<a href=computation.pdf>Lecture 8</a>)</li>
+  <li>CHSH Game (<a href=chsh.pdf>Lecture 9</a>)</li>
+  <li>Quantum Supremacy & Random Circuit Sampling (<a href=supremacy.pdf>Lecture 9</a>)</li>
+  <li>Post Quantum Crypto and Quantumness test (<a href=PQC-QA.pdf>Lecture 9</a>)</li>
+  
+  
 	
       </ul>
     </section>
@@ -78,9 +121,9 @@
     <section>
       <a name="books"><h2>Reading list</h2></a>
       <ol>
-        <li>Quantum Computation and Quantum Information. Michael A. Nielsen and Isaac L. Chuang. Cambridge.</li>
-        <li>Feynman Lectures of Computation. Richard Feynman. Addison-Wesley.</li>
-        <li>Lecture notes.
+        <li><a href="https://asignaturas.df.uba.ar/tdmc-pazroncagliaschmiegelowwisniacki/wp-content/uploads/sites/50/2025/03/Quantum-Computation-and-Quantum-Information-MICHAEL-NIELSEN-ISAAC-CHUANG.pdf" target="_blank">Quantum Computation and Quantum Information</a>. Michael A. Nielsen and Isaac L. Chuang. Cambridge.</li>
+        <li><a href="https://theswissbay.ch/pdf/Gentoomen%20Library/Extra/Richard_P._Feynman-Feynman_Lectures_on_Computation__-Addison-Wesley%281996%29.pdf" target="_blank">Feynman Lectures on Computation</a>. Richard Feynman. Addison-Wesley.</li>
+        <li>Lecture notes.</li>
       </ol>
     </section>
 
