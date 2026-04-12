@@ -1,0 +1,34 @@
+The “pure self-interest” view in geopolitics—often associated with hard variants of Realism—is analytically incomplete and, in many settings, strategically counterproductive. The critique operates along several dimensions: conceptual (what counts as “interest”), strategic (what maximizes it over time), and normative (what constraints are constitutive of stable political orders).
+
+1. Narrow conception of interest (category error).
+The doctrine presumes that “interest” is exhausted by short-term material gains (territory, resources, coercive leverage). But states routinely pursue reputational capital, alliance credibility, institutional stability, and domestic legitimacy. These are not epiphenomenal—they are inputs into long-run power. A state that treats all commitments as disposable transactions degrades its own credibility, raising the cost of future cooperation and deterrence. In formal terms, the strategy ignores repeated-game effects and reputation equilibria.
+
+2. Dynamic inconsistency and time horizons.
+Transactional opportunism is often myopically optimal but dynamically suboptimal. In repeated interactions, cooperative equilibria sustained by trigger strategies (folk theorems in game theory) can dominate one-shot defection. Violating norms (e.g., treaties, civilian protection) yields immediate gains but induces retaliation, arms races, or coalition balancing. What looks like “interest” at t undermines feasible payoff sets at t+1.
+
+3. Commitment, credibility, and alliance structure.
+Security architectures depend on credible commitments. If “the enemy of my enemy is my friend” irrespective of conduct, alliances become brittle and information-poor: partners cannot infer types (reliable vs opportunistic). This amplifies adverse selection and moral hazard. Empirically, durable alliances are embedded in shared rules and expectations—not purely contingent bargains—precisely to reduce these frictions.
+
+4. Endogeneity of preferences and blowback.
+Interests are not exogenous; they are shaped by the environment states co-create. Norm violations (supporting abusive proxies, instrumentalizing extremists) often produce blowback: radicalization, loss of control over non-state actors, and domestic security risks. A purely transactional calculus fails to internalize these feedback loops.
+
+5. Institutions as power multipliers.
+From the perspective of Liberal Institutionalism, rules and institutions lower transaction costs, provide information, and enable issue-linkage across domains. States that invest in regimes (trade, arms control, maritime law) convert diffuse cooperation into tangible gains. Treating everything as ad hoc bargaining forfeits these efficiency gains.
+
+6. Norms and legitimacy as strategic assets.
+Constructivist accounts (e.g., Constructivism) emphasize that legitimacy and identity shape what actions are feasible and acceptable. Legitimacy affects coalition formation, sanctions efficacy, and domestic consent. Even powerful states incur costs when perceived as norm violators—seen in reduced diplomatic bandwidth and increased balancing.
+
+7. Domestic politics constraint.
+Foreign policy is filtered through domestic institutions and publics. Ethical commitments (human rights, rule of law) are often embedded in constitutional orders and electoral incentives. Policies that flagrantly violate them can be politically unsustainable, generating policy reversals and credibility loss abroad.
+
+8. Indeterminacy without constraints.
+If all alignments are permissible, the theory loses predictive content: any coalition can be rationalized post hoc. Normative constraints (even if minimal) provide selection criteria that make behavior intelligible and expectations stable.
+
+9. Security dilemma intensification.
+Unconstrained opportunism exacerbates the security dilemma: others, unable to rely on norms, assume worst-case intentions and over-arm. The result is inefficient equilibria (arms races, preemption risks) that reduce aggregate security.
+
+10. Moral considerations as coordination devices.
+Ethical rules are not merely altruistic; they function as Schelling points that facilitate coordination (e.g., prohibitions on certain weapons, protection of non-combatants). Removing them raises uncertainty and the likelihood of miscalculation.
+
+Bottom line.
+A strictly transactional, ethics-indifferent framework underestimates how credibility, institutions, norms, and domestic legitimacy constitute state power over time. Even on its own terms—maximizing national interest—it is often self-defeating. The more defensible position is not naïve moralism, but constrained interest: pursue national objectives within a rule-bound framework that preserves reputation, enables cooperation, and manages long-run risks.
