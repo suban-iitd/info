@@ -1,0 +1,114 @@
+\documentclass{book}
+
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+%\usepackage{psfig}
+\usepackage{graphicx}
+\usepackage{noweb}
+\usepackage{caption}
+\usepackage{color}\pagecolor{white}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%\usepackage{fontspec}
+%\newfontfamily\devanagarifont{Noto Sans Devanagari}[Script=Devanagari]
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+ % or any recent installed version
+\usepackage{tfrupee}
+\pgfplotsset{compat=1.17}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+\hypersetup{unicode=true}  % for Unicode in PDF bookmarks
+\usepackage{microtype}
+\usepackage{tikz} 
+\usetikzlibrary{rulercompass,arrows.meta,positioning,fit,calc,patterns}
+\usetikzlibrary{arrows.meta} % for nice arrowheads (optional)
+\tikzset{>=Stealth}
+
+\newtheorem {theorem}{Theorem}[chapter]
+\newtheorem {claim}{Claim}[chapter]
+\newtheorem{eqed}{Example}[chapter]
+\newtheorem {lemma}{Lemma}[chapter]
+\newtheorem {observation}[theorem]{Observation}
+\newtheorem {remark}{Remark}[chapter]
+\newtheorem {defn}{Definition}[chapter]
+\newtheorem{definition}{Definition}[chapter]   % or [section]
+\newtheorem {corl}{Corollary}[chapter]
+\newtheorem {corollary}[theorem]{Corollary}
+\newtheorem {proposition}[theorem]{Proposition}
+\newtheorem {fact}[theorem]{Fact}
+\newtheorem {example}{Example}[chapter]
+\newtheorem {exercise}{Exercise}[chapter]
+\newenvironment{proof}{{\it Proof:\ } }{\hfill$\Box$ }
+\def\dmodels{\stackrel{\tenmi D}\models}
+\def\implies{\Longrightarrow}
+\def\leqv{\Longleftrightarrow}
+\def\logeqv{\Longleftrightarrow}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\B{\mathbb{B}}
+\def\P{\mathbb{P}}
+\def\D{\mathbb{D}}
+\def\eq{\Leftrightarrow}
+\def\down{\downarrow}
+\def\lamda{{\bf \lambda}}
+\def\alphL{\alpha\!\!-\!\!LIST}
+\newcommand{\Scheme}{{\tt Scheme }}
+\newcommand{\Pascal}{{\tt Pascal }}
+\newcommand{\C}{{\tt C }}
+\newcommand{\Fortran}{{\tt Fortran }}
+\newcommand{\ML}{{\tt ML }}
+\newcommand{\Java}{{\tt Java }}
+\newcommand{\Py}{{\tt Python }}
+\newcommand{\Python}{{\tt Python }}
+
+\setlength{\textheight}{9.0in}
+\setlength{\textwidth}{6.0in}
+\setlength{\topmargin}{-.25in}
+\setlength{\headheight}{0.5in}
+\setlength{\headsep}{0.25in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\parindent}{1pc}
+
+
+\begin{document}
+
+\title{\Large\bf Lecture Notes: Quantitative Reasoning and Mathematical Thinking\footnote{
+Copyright \copyright~~  2025, Subhashis Banerjee.
+ All Rights Reserved. These notes may be used in an academic
+course with prior consent of the author.}
+}
+
+\author{Subhashis Banerjee\\[2mm]
+{\em	Department of Computer Science } \\
+{\em	Ashoka University} \\
+{\em	Sonipat, Haryana, 131029 }\\
+{\em	email: suban@ashoka.edu.in} \\
+\\
+}
+
+\date{\today}
+
+\maketitle
+\tableofcontents
+\input{intro.tex}
+\input{sets_numbers_rulercompass.tex}
+\input{logic_and_sets.tex}
+\input{proofs.tex}
+\input{compute1.tex}
+\input{imperative.tex}
+\input{primes_and_crypto.tex}
+\input{counting.tex}
+\input{reals.tex}
+\input{reals2.tex}
+\end{document}

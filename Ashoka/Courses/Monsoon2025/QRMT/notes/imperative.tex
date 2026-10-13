@@ -728,20 +728,20 @@ derive a procedure that accomplishes that task.
 Generalise the final assertion by introducing a boundary $i$.
 The segment $L[l..i-1]$ is the sorted part, while $L[i..r]$ is the
 remaining part. Calling the latter ``unsorted'' means that we have
-not yet established its order; it may happen to be sorted already.
+not yet established its order.
 
 A sorted prefix alone is not enough. To extend it by choosing the
 smallest remaining entry, we also require that every entry already
 in the prefix is at most every remaining entry. Our outer invariant is
 \[
-\begin{gathered}
-l\leq i\leq r+1,\\
-L[l..i-1]\text{ is sorted},\\
+\begin{array}{lcl}
+I_{outer} & = &l\leq i\leq r+1,
+L[l..i-1]\text{ is sorted},
 L[a]\leq L[b]\qquad
 \text{whenever }l\leq a<i\leq b\leq r,\\
-L[l..r]\text{ rearranges }L_0[l..r],\\
-\text{entries outside }[l,r]\text{ and the list length are unchanged}.
-\end{gathered}
+&&L[l..r]\text{ rearranges }L_0[l..r],
+\text{ entries outside }[l,r]\text{ and the list length are unchanged}.
+\end{array}
 \]
 Assertions about all entries of an empty segment hold automatically.
 Thus $i=l$ establishes the invariant: the sorted part is empty.
@@ -749,13 +749,13 @@ Thus $i=l$ establishes the invariant: the sorted part is empty.
 Suppose $i\leq r$. What must be accomplished before advancing the
 boundary? The required assertion, which we call $Q$, is
 \[
-\begin{gathered}
-L[l..i]\text{ is sorted},\\
+\begin{array}{lcl}
+Q & = & L[l..i]\text{ is sorted},
 L[a]\leq L[b]\qquad
 \text{whenever }l\leq a\leq i<b\leq r,\\
-L[l..r]\text{ rearranges }L_0[l..r],\\
-\text{entries outside }[l,r]\text{ and the list length are unchanged}.
-\end{gathered}
+&&L[l..r]\text{ rearranges }L_0[l..r], 
+\text{ entries outside }[l,r]\text{ and the list length are unchanged}.
+\end{array}
 \]
 Here $i$ has not yet changed. Once $Q$ holds, the assignment
 $i\leftarrow i+1$ restores the outer invariant.
@@ -772,36 +772,24 @@ We postpone the implementation of this task.
 \Statex \texttt{\# PRE:} $L=L_0$,
 $1\leq l\leq r+1\leq |L|+1$; entries are comparable.
 \State $i\leftarrow l$
-\Statex \texttt{\# INV:} $l\leq i\leq r+1$; $L[l..i-1]$ is sorted.
-\Statex \texttt{\#} Every entry of $L[l..i-1]$ is at most every entry of $L[i..r]$.
-\Statex \texttt{\#} $L[l..r]$ rearranges $L_0[l..r]$;
-outside entries and length unchanged.
+\Statex \texttt{\# INV:} $I_{outer}$
 \Statex \texttt{\# BOUND:} $r-i+1$.
 \While{$i\leq r$}
     \State Establish $Q$ by selecting a minimum of $L[i..r]$
     and exchanging it with $L[i]$.
-    \Statex \texttt{\# INNER POST:} $L[l..i]$ is sorted.
-    \Statex \texttt{\#} Every entry of $L[l..i]$ is at most every entry of $L[i+1..r]$.
-    \Statex \texttt{\#} $L[l..r]$ rearranges $L_0[l..r]$;
-    outside entries and length unchanged.
+    \Statex \hspace{0.45in} \texttt{\# INNER POST:} $Q$ 
     \State $i\leftarrow i+1$
 \EndWhile
 \Statex \texttt{\# POST:} $L[l..r]$ is sorted and rearranges $L_0[l..r]$;
 \Statex \texttt{\#} outside entries and the list length are unchanged.
 \EndProcedure
 \end{algorithmic}
-\caption{The outer loop, with the inner task specified but not yet implemented.}
+\caption{The outer loop, with the inner task specified  (Statement 4) but not yet implemented.}
 \end{algorithm}
 
 The instruction to establish $Q$ is a task still to be developed.
 Assuming it finishes with its stated postcondition, the following
 increment preserves the outer invariant.
-
-Induct on the number of completed outer iterations. The invariant
-holds before any iteration. For each integer $k\geq0$, if it holds
-after $k$ iterations and another iteration is performed, establishing
-$Q$ and advancing $i$ makes it hold after $k+1$ iterations.
-At exit, $i=r+1$, so the sorted prefix is the entire segment.
 
 The bound function $r-i+1$ is a nonnegative integer at every loop
 test and decreases by one on each completed iteration. To finish
@@ -812,7 +800,7 @@ the termination argument, we must show that the inner task terminates.
 The inner task must establish $Q$. As argued above, it is enough to
 find an index $p$ satisfying
 \[
-i\leq p\leq r,\qquad
+R = i\leq p\leq r,\qquad
 L[p]\leq L[t]\quad\text{for every }i\leq t\leq r,
 \]
 without changing the list during the search, and then exchange
@@ -822,7 +810,7 @@ This is the postcondition of the minimum-search loop. Generalise
 its completed search range $[i,r]$ to $[i,j-1]$, where $j$ is the
 next position to inspect. The inner invariant becomes
 \[
-i+1\leq j\leq r+1,\qquad
+I _{inner} = i+1\leq j\leq r+1,\qquad
 i\leq p<j,\qquad
 L[p]\leq L[t]\quad(i\leq t<j).
 \]
@@ -842,10 +830,7 @@ and restores the invariant.
 \Statex \texttt{\# PRE:} the outer invariant holds and $i\leq r$.
 \State $p\leftarrow i$
 \State $j\leftarrow i+1$
-\Statex \texttt{\# INV:} $i+1\leq j\leq r+1$, $i\leq p<j$.
-\Statex \texttt{\#} $L[p]\leq L[t]$ for every $i\leq t<j$.
-\Statex \texttt{\#} The list and $i,l,r$ are unchanged during the search;
-the outer invariant holds.
+\Statex \texttt{\# INV:} $I_{inner}$
 \Statex \texttt{\# BOUND:} $r-j+1$.
 \While{$j\leq r$}
     \If{$L[j]<L[p]$}
@@ -853,26 +838,19 @@ the outer invariant holds.
     \EndIf
     \State $j\leftarrow j+1$
 \EndWhile
-\Statex \texttt{\# LOOP POST:} $j=r+1$, $i\leq p\leq r$,
-and $L[p]\leq L[t]$ for every $i\leq t\leq r$.
+\Statex \texttt{\# LOOP POST:} $R$,
 \Statex \texttt{\#} The list is unchanged, so the outer invariant still holds.
 \State Exchange the contents of $L[p]$ and $L[i]$.
 \Statex \texttt{\# POST:} $Q$: $L[l..i]$ is sorted;
-\Statex \texttt{\#} every entry of $L[l..i]$ is at most every entry of $L[i+1..r]$;
-\Statex \texttt{\#} $L[l..r]$ rearranges $L_0[l..r]$;
+\Statex \texttt{\#} every entry of $L[l..i]$ is at most every entry of $L[i+1..r]$; $L[l..r]$ rearranges $L_0[l..r]$;
 outside entries and length unchanged.
+\Statex \texttt{\#} 
 \EndProcedure
 \end{algorithmic}
 \caption{The independent refinement of the inner task.}
 \end{algorithm}
 
-Induct on the number of completed comparisons. The initial singleton
-establishes the base case. For every integer $k\geq0$, if $p$ records
-a minimum of the inspected segment after $k$ comparisons, comparing
-the next entry and updating $p$ if necessary records a minimum of
-the extended segment. Thus the invariant holds after $k+1$ comparisons.
-
-The bound function $r-j+1$ is nonnegative at each test and strictly
+ bound function $r-j+1$ is nonnegative at each test and strictly
 decreases on every iteration. At exit $j=r+1$, so $p$ identifies a
 minimum of the whole remaining segment. The exchange establishes
 $Q$, completing both the inner task and the justification of the
@@ -882,12 +860,52 @@ Replacing the specified task in the outer outline by
 \textsc{SelectAndPlaceMinimum} gives the complete selection-sort
 procedure.
 
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\Procedure{SelectionSort}{$L,l,r$}
+\Statex \texttt{\# PRE:} $L=L_0$,
+$1\leq l\leq r+1\leq |L|+1$; entries are comparable.
+\State $i\leftarrow l$
+\Statex \texttt{\# INV:} $I_{outer}$
+\Statex \texttt{\# BOUND:} $r-i+1$.
+\While{$i\leq r$}
+    \State  $p\leftarrow i$
+    \State $j\leftarrow i+1$
+   \Statex \hspace{0.45in} \texttt{\# INV:} $I_{inner}$
+   \Statex \hspace{0.45in} \texttt{\# BOUND:} $r-j+1$.
+   \While{$j\leq r$}
+     \If{$L[j]<L[p]$}
+           \State $p\leftarrow j$
+     \EndIf
+          \State $j\leftarrow j+1$
+    \EndWhile
+    \Statex \hspace{0.45in} \texttt{\# LOOP POST:} $R$,
+    \Statex \hspace{0.45in} \texttt{\#} The list is unchanged, so the outer invariant still holds.
+    \State Exchange the contents of $L[p]$ and $L[i]$.
+    \Statex \hspace{0.45in} \texttt{\# INNER POST:} $Q$: $L[l..i]$ is sorted;
+    \Statex \hspace{0.45in} \texttt{\#} every entry of $L[l..i]$ is at most every entry of $L[i+1..r]$; $L[l..r]$ rearranges $L_0[l..r]$;
+               outside entries and length unchanged.
+    \State $i\leftarrow i+1$
+\EndWhile
+\Statex \texttt{\# POST:} $L[l..r]$ is sorted and rearranges $L_0[l..r]$;
+\Statex \texttt{\#} outside entries and the list length are unchanged.
+\EndProcedure
+\end{algorithmic}
+\caption{The Selection Sort Algorithm.}
+\end{algorithm}
+
 \subsection{Counting the work}
 
-For a segment of length $n=r-l+1$, the successive minimum searches
-make
+For a segment of length $n=r-l+1$, let $T(n)$ be the number of comparisons required. Then, the recurrence for $T(n)$ is governed by
 \[
-(n-1)+(n-2)+\cdots+1=\frac{n(n-1)}{2}
+\begin{array}{lcl}
+T(1) & = & 0 \\
+T(n) & = & T(n-1) + (n-1) \\
+\end{array}
+\]
+Unfolding the recurrence we obtain
+\[
+T(n) = (n-1)+(n-2)+\cdots+1=\frac{n(n-1)}{2}
 \]
 entry comparisons. There are at most $n$ exchanges, including
 exchanges of an entry with itself. Thus the running time is $O(n^2)$
@@ -895,159 +913,159 @@ under constant-cost comparisons, accesses, and exchanges.
 The comparison count is the same even when the original segment
 is already sorted.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Sorting: derive the loops from the desired order}
-\label{sec:imp-sort}
-
-For sorting a segment $L[l..r]$, the postcondition has three parts: it is sorted
-in nondecreasing order, it is a rearrangement of the original segment
-$L_0[l..r]$, and entries outside that segment are unchanged. A rearrangement
-preserves entries with their multiplicities. Sorting must not discard or
-invent entries. In the following procedures $l,r,m$ are fixed and the
-entries have a total order.
-
-\subsection{Insertion sort: put the next entry into the sorted prefix}
-
-We develop just one sorting method, in two stages. First we design the
-outer loop, leaving the insertion task specified but not implemented.
-Then that specification becomes the postcondition from which we derive
-the inner loop.
-
-\subsubsection*{Stage 1: the outer loop and the insertion specification}
-The required final assertion is that $L[l..r]$ is a sorted rearrangement
-of $L_0[l..r]$, with every outside entry unchanged. Generalise the completed
-endpoint $r$ to $i-1$. Our outer invariant is
-\[
-l\leq i\leq r+1,\qquad L[l..i-1]\text{ is a sorted rearrangement of }L_0[l..i-1],
-\]
-with every entry outside this prefix unchanged from $L_0$ and $|L|=m$.
-The prefix need not contain the smallest entries of the whole list.
-As in Section~\ref{sec:alg-sum-iteration}, the moving boundary records
-how much of the original input has been processed.
-
-Initially $i=l$ gives an empty sorted prefix. To extend it, save $x=L[i]$.
-Think of one position $j$ as a \emph{logical hole}: its stored value is
-ignored until we put $x$ there. What must the insertion task accomplish?
-Its final assertion, denoted $Q$, is:
-\begin{enumerate}
-\item $l\leq j\leq i\leq r$ and $x=L_0[i]$; $i$ and $x$ are fixed during the task.
-\item The blocks $L[l..j-1]$ and $L[j+1..i]$ are sorted; every left entry
-is at most $x$, and every right entry is greater than $x$.
-\item The two blocks together with saved $x$ contain exactly the entries
-of $L_0[l..i]$, counting multiplicities; the hole $L[j]$ is excluded.
-\item Every entry outside $[l,i]$ is unchanged from $L_0$, and $|L|=m$.
-\end{enumerate}
-Once $Q$ holds, exchange $x$ with the contents of the hole $L[j]$.
-This puts the saved entry in its place; the discarded hole value moves to
-$x$, which is no longer needed. An assignment $L[j]\leftarrow x$ has the
-same effect on the list. Advancing $i$ then restores the outer invariant.
-
-\begin{algorithm}[H]
-\begin{algorithmic}[1]
-\Procedure{InsertionSort}{$L,l,r$}
-\Statex \texttt{\# PRE:} $L=L_0$, $|L|=m$, $1\leq l\leq r+1\leq m+1$; entries ordered.
-\State $i\leftarrow l$
-\Statex \texttt{\# OUTER INV:} $l\leq i\leq r+1$, $|L|=m$; $L[l..i-1]$ is sorted
-\Statex \texttt{\#} and rearranges $L_0[l..i-1]$; every other entry equals its original.
-\Statex \texttt{\# BOUND:} $r-i+1$.
-\While{$i\leq r$}
-\State $x\leftarrow L[i]$
-\State Establish assertion $Q$ (the inner loop is derived in Stage 2).
-\Statex \texttt{\# INNER POST:} $Q$: sorted left block $\leq x$, sorted right block $>x$;
-\Statex \texttt{\#} blocks plus $x$ rearrange $L_0[l..i]$, excluding hole $j$;
-\Statex \texttt{\#} $l\leq j\leq i$, $x=L_0[i]$; outside entries and length unchanged.
-\State Exchange the contents of $L[j]$ and $x$.
-\Statex \texttt{\# ASSERT:} $L[l..i]$ is a sorted rearrangement of $L_0[l..i]$.
-\State $i\leftarrow i+1$
-\EndWhile
-\Statex \texttt{\# POST:} $i=r+1$; $L[l..r]$ is sorted and rearranges $L_0[l..r]$;
-\Statex \texttt{\#} all outside entries and the length are unchanged.
-\EndProcedure
-\end{algorithmic}
-\caption{Stage 1: derive the outer loop, leaving insertion as a specified task.}
-\end{algorithm}
-
-This is a refinement outline: ``establish $Q$'' is a task still to be
-implemented, not an available primitive instruction. Assuming that task
-finishes with $Q$, the exchange and increment preserve the outer invariant.
-Induction on the number $i-l$ of completed insertions proves it at every
-test, starting at zero and using the argument for each nonnegative count
-at which the loop continues. At exit $i=r+1$ gives the sorting postcondition.
-The bound function $r-i+1$ decreases by one per completed outer iteration.
-We must still show that the inner task can always be completed.
-
-\subsubsection*{Stage 2: derive the inner loop from $Q$}
-Use $Q$ as the inner loop's specification. Its demanding clause is that
-all left entries are at most $x$. Generalise by allowing some of them to
-be larger than $x$, while preserving their order relative to the right
-block. The inner invariant is:
-\begin{enumerate}
-\item $l\leq j\leq i\leq r$, $x=L_0[i]$; $i,x$ remain fixed.
-\item $L[l..j-1]$ and $L[j+1..i]$ are sorted, and every left entry is
-at most every right entry.
-\item Every right entry is greater than $x$.
-\item The two blocks together with saved $x$ rearrange $L_0[l..i]$,
-counting multiplicities and excluding the hole at $j$.
-\item Every entry outside $[l,i]$ equals its original value, and $|L|=m$.
-\end{enumerate}
-Start with $j=i$. The right block is empty, the left block is the sorted
-prefix, and $x$ accounts for the entry excluded at the hole. Thus all
-clauses hold. If $j>l$ and $L[j-1]>x$, move the last left entry into the
-hole and move the hole one place left. Because the left block was sorted,
-its last entry belongs before all existing right entries. Because it is
-greater than $x$, the right block's other property is preserved too.
-The collection of entries represented by the two blocks and $x$ is unchanged.
-
-\begin{algorithm}[H]
-\begin{algorithmic}[1]
-\Statex \texttt{\# PRE:} the outer invariant holds, $i\leq r$, and $x=L[i]=L_0[i]$.
-\State $j\leftarrow i$
-\Statex \texttt{\# INNER INV:} $l\leq j\leq i\leq r$, $x=L_0[i]$; $i,x$ fixed.
-\Statex \texttt{\#} Left and right blocks sorted; every left entry $\leq$ every right entry.
-\Statex \texttt{\#} Right entries $>x$; both blocks plus $x$ rearrange $L_0[l..i]$.
-\Statex \texttt{\#} Hole $L[j]$ excluded; outside entries and length unchanged.
-\Statex \texttt{\# BOUND:} $j-l$.
-\While{$j>l$ and $L[j-1]>x$}
-\State $L[j]\leftarrow L[j-1]$
-\State $j\leftarrow j-1$
-\EndWhile
-\Statex \texttt{\# POST:} $Q$: left block sorted and $\leq x$; right block sorted and $>x$;
-\Statex \texttt{\#} bounds, collection, fixed-value, and unchanged-entry clauses still hold.
-\end{algorithmic}
-\caption{Stage 2: replace ``establish $Q$'' by this inner loop.}
-\end{algorithm}
-
-Check $j>l$ first; if false, do not read $L[j-1]$. Induction on the
-number of shifts, starting at zero, proves the invariant, with the
-preservation step valid for each nonnegative count at which a shift is
-made. The nonnegative integer bound function $j-l$ decreases by one on
-every shift. At exit $j=l$ or $L[j-1]\leq x$. Since the left block is
-sorted, this establishes that all its entries are at most $x$, giving
-exactly $Q$. Substituting this loop into Stage 1 completes the algorithm.
-
-For $[5,2,4,1]$, completed insertions give $[5,2,4,1]$, $[2,5,4,1]$,
-$[2,4,5,1]$, and $[1,2,4,5]$. When inserting $4$, saving it and shifting
-$5$ temporarily gives $[2,5,5,1]$, with the second position the hole.
-The blocks $[2]$ and $[5]$ together with saved $4$ still contain exactly
-the original prefix entries. The final exchange puts $4$ in the hole.
-The stored list itself need not be a rearrangement during the inner loop;
-that is why its collection assertion excludes the hole and includes $x$.
-
-\subsection{Counting the work}
-For a segment of length $n=r-l+1$, insertion sort makes at most
-$1+2+\cdots+(n-1)=n(n-1)/2$ entry comparisons and at most that many
-shifts. Distinct entries in decreasing order attain the shift count.
-The worst-case time is $O(n^2)$. On an already sorted nonempty segment,
-there are only $n-1$ entry comparisons and no shifts, so the time is $O(n)$.
-The bound functions establish termination; summing the work over the
-successive prefix lengths gives the complexity estimate.\footnote{These
-counts use constant-cost entry accesses, comparisons, and assignments.
-A fixed number of auxiliary locations need not mean a fixed number of bits.}
-
-Sorting to make one search faster can cost more than scanning once.
-For many searches of unchanged data, establishing order may repay its cost.
-The relevant comparison concerns the whole task.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\section{Sorting: derive the loops from the desired order}
+%\label{sec:imp-sort}
+%
+%For sorting a segment $L[l..r]$, the postcondition has three parts: it is sorted
+%in nondecreasing order, it is a rearrangement of the original segment
+%$L_0[l..r]$, and entries outside that segment are unchanged. A rearrangement
+%preserves entries with their multiplicities. Sorting must not discard or
+%invent entries. In the following procedures $l,r,m$ are fixed and the
+%entries have a total order.
+%
+%\subsection{Insertion sort: put the next entry into the sorted prefix}
+%
+%We develop just one sorting method, in two stages. First we design the
+%outer loop, leaving the insertion task specified but not implemented.
+%Then that specification becomes the postcondition from which we derive
+%the inner loop.
+%
+%\subsubsection*{Stage 1: the outer loop and the insertion specification}
+%The required final assertion is that $L[l..r]$ is a sorted rearrangement
+%of $L_0[l..r]$, with every outside entry unchanged. Generalise the completed
+%endpoint $r$ to $i-1$. Our outer invariant is
+%\[
+%l\leq i\leq r+1,\qquad L[l..i-1]\text{ is a sorted rearrangement of }L_0[l..i-1],
+%\]
+%with every entry outside this prefix unchanged from $L_0$ and $|L|=m$.
+%The prefix need not contain the smallest entries of the whole list.
+%As in Section~\ref{sec:alg-sum-iteration}, the moving boundary records
+%how much of the original input has been processed.
+%
+%Initially $i=l$ gives an empty sorted prefix. To extend it, save $x=L[i]$.
+%Think of one position $j$ as a \emph{logical hole}: its stored value is
+%ignored until we put $x$ there. What must the insertion task accomplish?
+%Its final assertion, denoted $Q$, is:
+%\begin{enumerate}
+%\item $l\leq j\leq i\leq r$ and $x=L_0[i]$; $i$ and $x$ are fixed during the task.
+%\item The blocks $L[l..j-1]$ and $L[j+1..i]$ are sorted; every left entry
+%is at most $x$, and every right entry is greater than $x$.
+%\item The two blocks together with saved $x$ contain exactly the entries
+%of $L_0[l..i]$, counting multiplicities; the hole $L[j]$ is excluded.
+%\item Every entry outside $[l,i]$ is unchanged from $L_0$, and $|L|=m$.
+%\end{enumerate}
+%Once $Q$ holds, exchange $x$ with the contents of the hole $L[j]$.
+%This puts the saved entry in its place; the discarded hole value moves to
+%$x$, which is no longer needed. An assignment $L[j]\leftarrow x$ has the
+%same effect on the list. Advancing $i$ then restores the outer invariant.
+%
+%\begin{algorithm}[H]
+%\begin{algorithmic}[1]
+%\Procedure{InsertionSort}{$L,l,r$}
+%\Statex \texttt{\# PRE:} $L=L_0$, $|L|=m$, $1\leq l\leq r+1\leq m+1$; entries ordered.
+%\State $i\leftarrow l$
+%\Statex \texttt{\# OUTER INV:} $l\leq i\leq r+1$, $|L|=m$; $L[l..i-1]$ is sorted
+%\Statex \texttt{\#} and rearranges $L_0[l..i-1]$; every other entry equals its original.
+%\Statex \texttt{\# BOUND:} $r-i+1$.
+%\While{$i\leq r$}
+%\State $x\leftarrow L[i]$
+%\State Establish assertion $Q$ (the inner loop is derived in Stage 2).
+%\Statex \texttt{\# INNER POST:} $Q$: sorted left block $\leq x$, sorted right block $>x$;
+%\Statex \texttt{\#} blocks plus $x$ rearrange $L_0[l..i]$, excluding hole $j$;
+%\Statex \texttt{\#} $l\leq j\leq i$, $x=L_0[i]$; outside entries and length unchanged.
+%\State Exchange the contents of $L[j]$ and $x$.
+%\Statex \texttt{\# ASSERT:} $L[l..i]$ is a sorted rearrangement of $L_0[l..i]$.
+%\State $i\leftarrow i+1$
+%\EndWhile
+%\Statex \texttt{\# POST:} $i=r+1$; $L[l..r]$ is sorted and rearranges $L_0[l..r]$;
+%\Statex \texttt{\#} all outside entries and the length are unchanged.
+%\EndProcedure
+%\end{algorithmic}
+%\caption{Stage 1: derive the outer loop, leaving insertion as a specified task.}
+%\end{algorithm}
+%
+%This is a refinement outline: ``establish $Q$'' is a task still to be
+%implemented, not an available primitive instruction. Assuming that task
+%finishes with $Q$, the exchange and increment preserve the outer invariant.
+%Induction on the number $i-l$ of completed insertions proves it at every
+%test, starting at zero and using the argument for each nonnegative count
+%at which the loop continues. At exit $i=r+1$ gives the sorting postcondition.
+%The bound function $r-i+1$ decreases by one per completed outer iteration.
+%We must still show that the inner task can always be completed.
+%
+%\subsubsection*{Stage 2: derive the inner loop from $Q$}
+%Use $Q$ as the inner loop's specification. Its demanding clause is that
+%all left entries are at most $x$. Generalise by allowing some of them to
+%be larger than $x$, while preserving their order relative to the right
+%block. The inner invariant is:
+%\begin{enumerate}
+%\item $l\leq j\leq i\leq r$, $x=L_0[i]$; $i,x$ remain fixed.
+%\item $L[l..j-1]$ and $L[j+1..i]$ are sorted, and every left entry is
+%at most every right entry.
+%\item Every right entry is greater than $x$.
+%\item The two blocks together with saved $x$ rearrange $L_0[l..i]$,
+%counting multiplicities and excluding the hole at $j$.
+%\item Every entry outside $[l,i]$ equals its original value, and $|L|=m$.
+%\end{enumerate}
+%Start with $j=i$. The right block is empty, the left block is the sorted
+%prefix, and $x$ accounts for the entry excluded at the hole. Thus all
+%clauses hold. If $j>l$ and $L[j-1]>x$, move the last left entry into the
+%hole and move the hole one place left. Because the left block was sorted,
+%its last entry belongs before all existing right entries. Because it is
+%greater than $x$, the right block's other property is preserved too.
+%The collection of entries represented by the two blocks and $x$ is unchanged.
+%
+%\begin{algorithm}[H]
+%\begin{algorithmic}[1]
+%\Statex \texttt{\# PRE:} the outer invariant holds, $i\leq r$, and $x=L[i]=L_0[i]$.
+%\State $j\leftarrow i$
+%\Statex \texttt{\# INNER INV:} $l\leq j\leq i\leq r$, $x=L_0[i]$; $i,x$ fixed.
+%\Statex \texttt{\#} Left and right blocks sorted; every left entry $\leq$ every right entry.
+%\Statex \texttt{\#} Right entries $>x$; both blocks plus $x$ rearrange $L_0[l..i]$.
+%\Statex \texttt{\#} Hole $L[j]$ excluded; outside entries and length unchanged.
+%\Statex \texttt{\# BOUND:} $j-l$.
+%\While{$j>l$ and $L[j-1]>x$}
+%\State $L[j]\leftarrow L[j-1]$
+%\State $j\leftarrow j-1$
+%\EndWhile
+%\Statex \texttt{\# POST:} $Q$: left block sorted and $\leq x$; right block sorted and $>x$;
+%\Statex \texttt{\#} bounds, collection, fixed-value, and unchanged-entry clauses still hold.
+%\end{algorithmic}
+%\caption{Stage 2: replace ``establish $Q$'' by this inner loop.}
+%\end{algorithm}
+%
+%Check $j>l$ first; if false, do not read $L[j-1]$. Induction on the
+%number of shifts, starting at zero, proves the invariant, with the
+%preservation step valid for each nonnegative count at which a shift is
+%made. The nonnegative integer bound function $j-l$ decreases by one on
+%every shift. At exit $j=l$ or $L[j-1]\leq x$. Since the left block is
+%sorted, this establishes that all its entries are at most $x$, giving
+%exactly $Q$. Substituting this loop into Stage 1 completes the algorithm.
+%
+%For $[5,2,4,1]$, completed insertions give $[5,2,4,1]$, $[2,5,4,1]$,
+%$[2,4,5,1]$, and $[1,2,4,5]$. When inserting $4$, saving it and shifting
+%$5$ temporarily gives $[2,5,5,1]$, with the second position the hole.
+%The blocks $[2]$ and $[5]$ together with saved $4$ still contain exactly
+%the original prefix entries. The final exchange puts $4$ in the hole.
+%The stored list itself need not be a rearrangement during the inner loop;
+%that is why its collection assertion excludes the hole and includes $x$.
+%
+%\subsection{Counting the work}
+%For a segment of length $n=r-l+1$, insertion sort makes at most
+%$1+2+\cdots+(n-1)=n(n-1)/2$ entry comparisons and at most that many
+%shifts. Distinct entries in decreasing order attain the shift count.
+%The worst-case time is $O(n^2)$. On an already sorted nonempty segment,
+%there are only $n-1$ entry comparisons and no shifts, so the time is $O(n)$.
+%The bound functions establish termination; summing the work over the
+%successive prefix lengths gives the complexity estimate.\footnote{These
+%counts use constant-cost entry accesses, comparisons, and assignments.
+%A fixed number of auxiliary locations need not mean a fixed number of bits.}
+%
+%Sorting to make one search faster can cost more than scanning once.
+%For many searches of unchanged data, establishing order may repay its cost.
+%The relevant comparison concerns the whole task.
 
 \section{Procedures can be recursive too}
 
